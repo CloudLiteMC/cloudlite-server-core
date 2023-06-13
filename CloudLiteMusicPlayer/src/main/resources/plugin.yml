@@ -1,0 +1,4 @@
+name: CloudliteMusicPlayer
+version: '${project.version}'
+main: com.burchard36.cloudlite.CloudliteMusicPlayer
+api-version: 1.19

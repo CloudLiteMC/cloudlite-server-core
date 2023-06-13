@@ -1,0 +1,92 @@
+MusicPlayer:
+  skaga:
+    Details:
+      SongName: Skaga
+      Artist: Alexander Nakarada
+    Length:
+      Minutes: 5
+      Seconds: 35
+  greenlands:
+    Length:
+      Minutes: 3
+      Seconds: 0
+    Details:
+      SongName: Greenlands
+      Artist: Alexander Nakarada
+  leavingforvalhalla:
+    Length:
+      Minutes: 6
+      Seconds: 23
+    Details:
+      SongName: Leaving for Valhalla
+      Artist: Alexander Nakarada
+  forestwalk:
+    Length:
+      Minutes: 3
+      Seconds: 38
+    Details:
+      SongName: Forest Walk
+      Artist: Alexander Nakarada
+  nomadicdawn:
+    Length:
+      Minutes: 4
+      Seconds: 49
+    Details:
+      SongName: Nomadic Dawn
+      Artist: Alexander Nakarada
+  nowweride:
+    Length:
+      Minutes: 5
+      Seconds: 5
+    Details:
+      SongName: Now We Ride
+      Artist: Alexander Nakarada
+  villageambience:
+    Length:
+      Minutes: 6
+      Seconds: 17
+    Details:
+      SongName: Village Ambience
+      Artist: Alexander Nakarada
+  adventure:
+    Length:
+      Minutes: 4
+      Seconds: 37
+    Details:
+      SongName: Adventure
+      Artist: Alexander Nakarada
+  entertainment:
+    Length:
+      Minutes: 2
+      Seconds: 40
+    Details:
+      SongName: Entertainment
+      Artist: Alexander Nakarada
+  traveler:
+    Length:
+      Minutes: 4
+      Seconds: 7
+    Details:
+      SongName: Traveler
+      Artist: Alexander Nakarada
+  legend:
+    Length:
+      Minutes: 3
+      Seconds: 46
+    Details:
+      SongName: Legend
+      Artist: Adrian von Ziegler
+  forestflute:
+    Length:
+      Minutes: 3
+      Seconds: 32
+    Details:
+      SongName: Forest Flute
+      Artist: Adrian von Ziegler
+  thegael:
+    Length:
+      Minutes: 5
+      Seconds: 40
+    Details:
+      SongName: The Gael
+      Artist: The Last of the Mohicans

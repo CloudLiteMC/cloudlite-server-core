@@ -1,0 +1,4 @@
+name: CloudliteMC
+version: '${project.version}'
+main: com.burchard36.cloudlite.cloudlitemc.CloudliteMC
+api-version: 1.19
