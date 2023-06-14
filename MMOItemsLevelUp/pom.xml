@@ -3,7 +3,8 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>CloudLiteServerPlugin</artifactId>
+    <artifactId>MMOItemsLevelUp</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <parent>
         <artifactId>CloudLiteMCProject</artifactId>
@@ -11,7 +12,11 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <name>ServerPlugin</name>
+    <name>MMOItemsLevelUp</name>
+    <properties>
+        <mmo-items>C:/Users/burch/Desktop/MMOItems.jar</mmo-items>
+        <mythic-lib>C:/Users/burch/Desktop/MythicLib.jar</mythic-lib>
+    </properties>
 
     <build>
         <resources>
@@ -22,35 +27,32 @@
         </resources>
     </build>
 
-    <repositories>
-        <repository>
-            <id>spigotmc-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
-            <id>sonatype</id>
-            <url>https://oss.sonatype.org/content/groups/public/</url>
-        </repository>
-    </repositories>
-
     <dependencies>
         <dependency>
             <groupId>com.burchard36.cloudlite</groupId>
-            <artifactId>CloudLiteMusicPlayer</artifactId>
+            <artifactId>CloudLiteCore</artifactId>
             <version>1.0.0-SNAPSHOT</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.mmoitems</groupId>
+            <artifactId>MMOItems</artifactId>
+            <version>6.9.3</version>
+            <scope>system</scope>
+            <systemPath>${mmo-items}</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.mythiclib</groupId>
+            <artifactId>MythicLib</artifactId>
+            <version>6.9.3</version>
+            <scope>system</scope>
+            <systemPath>${mythic-lib}</systemPath>
         </dependency>
         <dependency>
             <groupId>com.burchard36.cloudlite</groupId>
             <artifactId>AutoCompressor</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.burchard36.cloudlite</groupId>
-            <artifactId>MMOItemsLevelUp</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

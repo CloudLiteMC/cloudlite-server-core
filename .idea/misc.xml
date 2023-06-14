@@ -16,6 +16,8 @@
         <option value="$PROJECT_DIR$/CloudliteCore/pom.xml" />
         <option value="$PROJECT_DIR$/CloudliteMusicPlayer/pom.xml" />
         <option value="$PROJECT_DIR$/ServerPlugin/pom.xml" />
+        <option value="$PROJECT_DIR$/MMOItemsLevelUp/pom.xml" />
+        <option value="$PROJECT_DIR$/AutoCompresser/pom.xml" />
       </list>
     </option>
   </component>

@@ -1,0 +1,37 @@
+MMOItemUpgrades:
+  BEGINNER_SHOVEL_1:
+    Next: BEGINNER_SHOVEL_2
+    Type: TOOL
+    Cost:
+      Items:
+        DirtCost:
+          Material: DIRT
+          Amount: 8
+      Experience: 1
+  BEGINNER_SHOVEL_2:
+    Next: BEGINNER_SHOVEL_3
+    Type: TOOL
+    Cost:
+      Items:
+        DirtCost:
+          Material: DIRT
+          Amount: 12
+      Experience: 2
+  BEGINNER_SHOVEL_3:
+    Next: BEGINNER_SHOVEL_4
+    Type: TOOL
+    Cost:
+      Items:
+        DirtCost:
+          Material: DIRT
+          Amount: 24
+      Experience: 2
+  BEGINNER_SHOVEL_5:
+    Next: BEGINNER_SHOVEL_6
+    Type: TOOL
+    Cost:
+      Items:
+        DirtCost:
+          Material: DIRT
+          Amount: 32
+      Experience: 2

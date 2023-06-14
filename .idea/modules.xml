@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AutoCompressor/AutoCompressor.iml" filepath="$PROJECT_DIR$/AutoCompressor/AutoCompressor.iml" />
       <module fileurl="file://$PROJECT_DIR$/CloudliteCore/CloudLiteCore.iml" filepath="$PROJECT_DIR$/CloudliteCore/CloudLiteCore.iml" />
       <module fileurl="file://$PROJECT_DIR$/CloudliteMusicPlayer/CloudLiteMusicPlayer.iml" filepath="$PROJECT_DIR$/CloudliteMusicPlayer/CloudLiteMusicPlayer.iml" />
       <module fileurl="file://$PROJECT_DIR$/CloudliteMCServerCore.iml" filepath="$PROJECT_DIR$/CloudliteMCServerCore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MMOItemsLevelUp/MMOItemsLevelUp.iml" filepath="$PROJECT_DIR$/MMOItemsLevelUp/MMOItemsLevelUp.iml" />
       <module fileurl="file://$PROJECT_DIR$/ServerPlugin/ServerPlugin.iml" filepath="$PROJECT_DIR$/ServerPlugin/ServerPlugin.iml" />
     </modules>
   </component>

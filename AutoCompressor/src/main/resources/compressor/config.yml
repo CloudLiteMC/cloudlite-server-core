@@ -1,0 +1,59 @@
+DIRT:
+  Compressor:
+    DisplayName: "&e&lCompressed Dirt"
+    Permission: "autocompress.dirt"
+    HeadTexture: "42248"
+  SuperCompressor:
+    DisplayName: "&e&lSuper Compressed Dirt"
+    Permission: "supercompress.dirt"
+    HeadTexture: "42248"
+  MegaCompressor:
+    DisplayName: "&e&lMega Compressed Dirt"
+    Permission: "megacompress.dirt"
+    HeadTexture: "42248"
+  OAK_LOG:
+    Name: "&e&lCompressed Oak Log"
+    Permission: "autocompress.oak"
+    HeadsDb: "46832"
+  WHEAT:
+    Name: "&e&lCompressed Wheat"
+    Permission: "autocompress.wheat"
+    HeadsDb: "29487"
+  COBBLESTONE:
+    Name: "&e&lCompressed Cobblestone"
+    Permission: "autocompress.cobblestone"
+    HeadsDb: "52913"
+  COAL:
+    Name: "&e&lCompressed Coal"
+    Permission: "autocompress.coal"
+    HeadsDb: "29479"
+  IRON_INGOT:
+    Name: "&e&lCompressed Iron"
+    Permission: "autocompress.iron"
+    HeadsDb: "52910"
+
+SuperCompressor:
+  DIRT:
+    Name: "&6&lSuper Compressed Dirt"
+    Permission: "supercompress.dirt"
+    HeadTexture: "20502"
+  OAK_LOG:
+    Name: "&e&lSuper Compressed Oak Log"
+    Permission: "supercompress.oak"
+    HeadTexture: "46062"
+  WHEAT:
+    Name: "&e&lSuper Compressed Wheat"
+    Permission: "supercompress.wheat"
+    HeadTexture: "46089"
+  COBBLESTONE:
+    Name: "&e&lSuper Compressed Cobblestone"
+    Permission: "supercompress.cobblestone"
+    HeadTexture: "45872"
+  COAL:
+    Name: "&e&lSuper Compressed Coal"
+    Permission: "supercompress.coal"
+    HeadTexture: "41725"
+  IRON_INGOT:
+    Name: "&e&lSuper Compressed Iron"
+    Permission: "supercompress.iron"
+    HeadTexture: "51469"

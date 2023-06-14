@@ -1,4 +1,4 @@
-ResourcePack: https://github.com/Burchard36/cloudlitemc-resourcepack/raw/main/CloudliteMCMusicPack.zip
+ResourcePack: https://github.com/Burchard36/cloudlitemc-resourcepack/raw/main/CloudLiteMCMusicPack-1.0.0.zip
 MusicPlayer:
   skaga:
     Details:
@@ -110,7 +110,7 @@ MusicPlayer:
       Seconds: 3
     Details:
       SongName: Snowfall
-      Artist:
+      Artist: oneheart x reidenshi
       GuiMaterial: MUSIC_DISC_MELLOHI
   interstellar:
     Length:
