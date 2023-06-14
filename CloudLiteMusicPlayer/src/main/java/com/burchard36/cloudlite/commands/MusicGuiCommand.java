@@ -4,6 +4,7 @@ import com.burchard36.cloudlite.CloudLiteMusicPlayer;
 import com.burchard36.cloudlite.gui.SongListGui;
 import com.burchard36.cloudlite.utils.TaskRunner;
 import lombok.NonNull;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -45,6 +46,7 @@ public class MusicGuiCommand implements CommandExecutor {
             return false;
         }
 
+        Bukkit.getLogger().info(convert("&fOpening a &bSongListGui&f for player &e%s".formatted(player.getName())));
         this.moduleInstance.getPluginInstance().getGuiManager()
                 .openPaginatedTo((Player) sender, 0, new SongListGui(this.moduleInstance));
         this.commandCoolDowns.put(player.getUniqueId(), TaskRunner.runSyncTaskLater(() -> {

@@ -26,7 +26,7 @@ public abstract class CloudLiteCore extends JavaPlugin implements Listener {
     @Getter
     private ConfigManager configManager;
     @Getter
-    private ModuleLoader moduleLoader;
+    private ModuleLoader moduleLoader = new ModuleLoader();
     @Getter
     private Random random;
     @Getter
@@ -42,9 +42,6 @@ public abstract class CloudLiteCore extends JavaPlugin implements Listener {
         Bukkit.getLogger().info(convert("&fInitializing &bConfigManager&f..."));
         this.configManager = new ConfigManager(this);
         Bukkit.getLogger().info(convert("&aDone!"));
-        Bukkit.getLogger().info(convert("&fInitializing &bModuleLoader&f..."));
-        this.moduleLoader = new ModuleLoader(this);
-        Bukkit.getLogger().info(convert("&aDone!"));
         Bukkit.getLogger().info(convert("&fInitializing &bGuiManager&f..."));
         this.guiManager = new GuiManager();
         Bukkit.getLogger().info(convert("&aDone!"));
@@ -55,6 +52,9 @@ public abstract class CloudLiteCore extends JavaPlugin implements Listener {
     }
     @Override
     public void onEnable() {
+        registerEvent(this); // listen for HeadDatabase
+        this.guiEvents = new GuiEvents(guiManager);
+        registerEvent(this.guiEvents);
         Bukkit.getLogger().info(convert("&fSending &bonEnable&f to all registered modules..."));
         this.moduleLoader.onServerEnable();
         Bukkit.getLogger().info(convert("&aDone&f! &bCloudLiteCore&f has finished its onEnable initialization!"));
@@ -63,8 +63,6 @@ public abstract class CloudLiteCore extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onDatabaseLoad(final DatabaseLoadEvent loadEvent) {
-        this.guiEvents = new GuiEvents(guiManager);
-        registerEvent(this.guiEvents);
         Bukkit.getLogger().info(convert("&bHeadDatabaseAPI &fHas connected to its database, injecting API to all modules..."));
         this.moduleLoader.onDatabaseLoad(new HeadDatabaseAPI());
         Bukkit.getLogger().info(convert("&aDone!"));
@@ -76,6 +74,7 @@ public abstract class CloudLiteCore extends JavaPlugin implements Listener {
     }
 
     public static void registerEvent(final Listener eventListener) {
+        Bukkit.getLogger().info(convert("Registering event &b%s&f.".formatted(eventListener.getClass().getName())));
         INSTANCE.getServer().getPluginManager().registerEvents(eventListener, INSTANCE);
     }
 

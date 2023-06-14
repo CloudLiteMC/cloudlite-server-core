@@ -23,7 +23,8 @@ public class GuiManager {
 
     public void openPaginatedTo(final Player player, final int page, PaginatedInventory paginatedInventory) {
         final Inventory inventory = paginatedInventory.getPage(page).getInventory();
-        if (inventory == null) throw new IllegalArgumentException("Paginated Inventory amy not be null!");
+        if (inventory == null) throw new IllegalArgumentException("Paginated Inventory may not be null!");
+        this.openInventoryTo(player, paginatedInventory.getPage(page));
     }
 
     public void registerInventory(final Inventory inventory, final GuiHandler guiHandler) {

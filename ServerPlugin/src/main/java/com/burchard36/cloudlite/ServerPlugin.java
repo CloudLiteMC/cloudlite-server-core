@@ -3,7 +3,9 @@ package com.burchard36.cloudlite;
 public final class ServerPlugin extends CloudLiteCore {
     @Override
     public void onLoad() {
-        super.onLoad();
+        // Modules need to get injected before the rest of the plugin
         this.getModuleLoader().registerModule(new CloudLiteMusicPlayer());
+
+        super.onLoad();
     }
 }

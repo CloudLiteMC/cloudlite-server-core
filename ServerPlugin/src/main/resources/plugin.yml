@@ -2,6 +2,8 @@ name: ServerPlugin
 version: '${project.version}'
 main: com.burchard36.cloudlite.ServerPlugin
 api-version: 1.19
+depend:
+  - HeadDatabase
 commands:
   skipsong:
     aliases:

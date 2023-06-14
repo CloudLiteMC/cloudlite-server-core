@@ -2,6 +2,7 @@ package com.burchard36.cloudlite.gui;
 
 import com.burchard36.cloudlite.gui.buttons.InventoryButton;
 import lombok.Getter;
+import org.bukkit.Bukkit;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
@@ -33,6 +34,8 @@ public abstract class InventoryGui implements GuiHandler {
     @Override
     public void onInventoryClick(InventoryClickEvent event) {
         final int slotClicked = event.getSlot();
+        Bukkit.broadcastMessage(event.getSlot() + "");
+        Bukkit.broadcastMessage(event.getRawSlot() + "");
         final InventoryButton inventoryButton = this.inventoryButtons.get(slotClicked);
         if (inventoryButton != null) inventoryButton.onClick(event);
     }

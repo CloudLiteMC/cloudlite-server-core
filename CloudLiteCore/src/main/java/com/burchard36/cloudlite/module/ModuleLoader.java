@@ -8,11 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModuleLoader {
-    protected final JavaPlugin pluginInstance;
     protected final List<PluginModule> modules;
 
-    public ModuleLoader(final JavaPlugin javaPlugin) {
-        this.pluginInstance = javaPlugin;
+    public ModuleLoader() {
         this.modules = new ArrayList<>();
     }
 

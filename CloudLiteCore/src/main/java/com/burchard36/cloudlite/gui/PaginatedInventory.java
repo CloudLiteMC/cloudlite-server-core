@@ -9,10 +9,6 @@ public abstract class PaginatedInventory {
 
     private final HashMap<Integer, InventoryGui> inventoryPages = new HashMap<>();
 
-    public PaginatedInventory() {
-
-    }
-
     public void addPage(final int page, final InventoryGui inventoryGui) {
         this.inventoryPages.put(page, inventoryGui);
     }

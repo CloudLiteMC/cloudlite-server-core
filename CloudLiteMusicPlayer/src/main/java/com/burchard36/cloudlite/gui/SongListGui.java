@@ -48,14 +48,16 @@ public class SongListGui extends PaginatedInventory {
                 @Override
                 public void onInventoryClick(InventoryClickEvent event) {
                     event.setCancelled(true);
+                    super.onInventoryClick(event);
                 }
 
                 @Override
                 public void fillButtons() {
                     int startAt = finalCurrentPage * 45; // only display 45 songs per page
-
                     for (int x = 0; x < musicPlayer.getMusicConfig().getSongDataList().size(); x++) {
-                        if (startAt > x) continue;
+                        if (startAt > x) {
+                            continue;
+                        }
                         final SongData songData = musicPlayer.getMusicConfig().getSongDataList().get(x);
 
                         this.addButton(x, new InventoryButton(songData.getDisplayItem()) {
@@ -109,6 +111,9 @@ public class SongListGui extends PaginatedInventory {
                             musicPlayer.playFor((Player) clickEvent.getWhoClicked());
                         }
                     });
+
+                    Bukkit.broadcastMessage("Calling super....");
+                    super.fillButtons(); // actually sets them in the inventory
                 }
 
             });
