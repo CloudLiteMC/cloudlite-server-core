@@ -12,6 +12,8 @@ public class MusicListConfig implements Config {
 
     @Getter
     protected final List<SongData> songDataList;
+    @Getter
+    private String resourcePackURL;
 
     public MusicListConfig() {
         this.songDataList = new ArrayList<>();
@@ -26,6 +28,7 @@ public class MusicListConfig implements Config {
     public void deserialize(FileConfiguration config) {
         this.songDataList.clear();
         final ConfigurationSection songsConfig = config.getConfigurationSection("MusicPlayer");
+        this.resourcePackURL = config.getString("ResourcePack");
         assert songsConfig != null;
         for (String songLocalKey : songsConfig.getKeys(false)) {
             final ConfigurationSection songConfig = songsConfig.getConfigurationSection(songLocalKey);

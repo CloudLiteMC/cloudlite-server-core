@@ -1,6 +1,6 @@
 package com.burchard36.cloudlite.config;
 
-import lombok.Getter;
+import com.burchard36.cloudlite.utils.StringUtils;
 import lombok.SneakyThrows;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -8,11 +8,8 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.burchard36.cloudlite.CloudLiteCore.convert;
 
 public class ConfigManager {
     private final JavaPlugin pluginInstance;
@@ -29,7 +26,7 @@ public class ConfigManager {
         final File configFile = new File(this.pluginInstance.getDataFolder(), config.getFileName());
         if (!configFile.exists()) {
             this.pluginInstance.saveResource(config.getFileName(), false);
-            Bukkit.getLogger().info(convert("&bCreating new config file&f%s&b...").formatted(config.getFileName()));
+            Bukkit.getLogger().info(StringUtils.convert("&bCreating new config file&f%s&b...").formatted(config.getFileName()));
             return this.getConfig(config);
         }
 

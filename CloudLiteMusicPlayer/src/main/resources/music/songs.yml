@@ -3,6 +3,7 @@ MusicPlayer:
     Details:
       SongName: Skaga
       Artist: Alexander Nakarada
+      GuiMaterial: MUSIC_DISC_13
     Length:
       Minutes: 5
       Seconds: 35
@@ -13,6 +14,7 @@ MusicPlayer:
     Details:
       SongName: Greenlands
       Artist: Alexander Nakarada
+      GuiMaterial: MUSIC_DISC_CAT
   leavingforvalhalla:
     Length:
       Minutes: 6
@@ -20,6 +22,7 @@ MusicPlayer:
     Details:
       SongName: Leaving for Valhalla
       Artist: Alexander Nakarada
+      GuiMaterial: MUSIC_DISC_BLOCKS
   forestwalk:
     Length:
       Minutes: 3
@@ -27,6 +30,7 @@ MusicPlayer:
     Details:
       SongName: Forest Walk
       Artist: Alexander Nakarada
+      GuiMaterial: MUSIC_DISC_CHIRP
   nomadicdawn:
     Length:
       Minutes: 4
@@ -34,6 +38,7 @@ MusicPlayer:
     Details:
       SongName: Nomadic Dawn
       Artist: Alexander Nakarada
+      GuiMaterial: MUSIC_DISC_FAR
   nowweride:
     Length:
       Minutes: 5
@@ -41,6 +46,7 @@ MusicPlayer:
     Details:
       SongName: Now We Ride
       Artist: Alexander Nakarada
+      GuiMaterial: MUSIC_DISC_MALL
   villageambience:
     Length:
       Minutes: 6
@@ -48,6 +54,7 @@ MusicPlayer:
     Details:
       SongName: Village Ambience
       Artist: Alexander Nakarada
+      GuiMaterial: MUSIC_DISC_MELLOHI
   adventure:
     Length:
       Minutes: 4
@@ -55,6 +62,7 @@ MusicPlayer:
     Details:
       SongName: Adventure
       Artist: Alexander Nakarada
+      GuiMaterial: MUSIC_DISC_STAL
   entertainment:
     Length:
       Minutes: 2
@@ -62,6 +70,7 @@ MusicPlayer:
     Details:
       SongName: Entertainment
       Artist: Alexander Nakarada
+      GuiMaterial: MUSIC_DISC_STRAD
   traveler:
     Length:
       Minutes: 4
@@ -69,6 +78,7 @@ MusicPlayer:
     Details:
       SongName: Traveler
       Artist: Alexander Nakarada
+      GuiMaterial: MUSIC_DISC_WARD
   legend:
     Length:
       Minutes: 3
@@ -76,6 +86,7 @@ MusicPlayer:
     Details:
       SongName: Legend
       Artist: Adrian von Ziegler
+      GuiMaterial: MUSIC_DISC_WAIT
   forestflute:
     Length:
       Minutes: 3
@@ -83,6 +94,7 @@ MusicPlayer:
     Details:
       SongName: Forest Flute
       Artist: Adrian von Ziegler
+      GuiMaterial: MUSIC_DISC_OTHERSIDE
   thegael:
     Length:
       Minutes: 5
@@ -90,3 +102,4 @@ MusicPlayer:
     Details:
       SongName: The Gael
       Artist: The Last of the Mohicans
+      GuiMaterial: MUSIC_DISC_WARD

@@ -1,9 +1,10 @@
 package com.burchard36.cloudlite.module;
 
+import com.burchard36.cloudlite.gui.GuiManager;
+import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class ModuleLoader {
@@ -15,10 +16,21 @@ public class ModuleLoader {
         this.modules = new ArrayList<>();
     }
 
-    public void startModule(final PluginModule pluginModule) {
+    public void registerModule(final PluginModule pluginModule) {
         if (modules.contains(pluginModule)) throw new IllegalStateException("PluginModule is already initialized!");
         this.modules.add(pluginModule);
-        pluginModule.startModule();
+    }
+
+    public void onServerLoadUp(final GuiManager guiManager) {
+
+    }
+
+    public void onDatabaseLoad(final HeadDatabaseAPI headDatabaseAPI) {
+        this.modules.forEach(m -> m.onDatabaseLoad(headDatabaseAPI));
+    }
+
+    public void onServerEnable() {
+
     }
 
     public void reloadModules() {
