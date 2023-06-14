@@ -13,6 +13,14 @@ import static com.burchard36.cloudlite.utils.StringUtils.convert;
 
 public class ItemUtils {
 
+    public static ItemStack modify(final ItemStack itemStack, final String displayName) {
+        final ItemMeta meta = itemStack.getItemMeta();
+        assert meta != null;
+        meta.setDisplayName(convert(displayName));
+        itemStack.setItemMeta(meta);
+        return itemStack;
+    }
+
     public static ItemStack createItemStack(
             final String materialName,
             @Nullable final String displayName,

@@ -8,6 +8,7 @@ import lombok.Getter;
 import me.arcaniax.hdb.api.DatabaseLoadEvent;
 import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -48,7 +49,7 @@ public abstract class CloudLiteCore extends JavaPlugin implements Listener {
         this.guiManager = new GuiManager();
         Bukkit.getLogger().info(convert("&aDone!"));
         Bukkit.getLogger().info(convert("&fSending &bonServerLoadUp&f to registered modules..."));
-        this.moduleLoader.onServerLoadUp(this.guiManager);
+        this.moduleLoader.onServerLoadUp(this);
         Bukkit.getLogger().info(convert("&aDone&f! &bCloudLiteCore&f has finished its onLoad initialization!"));
         Bukkit.getLogger().info(convert("&fIf there was any &cerrors&f please contact a &bdeveloper&f."));
     }
@@ -71,13 +72,16 @@ public abstract class CloudLiteCore extends JavaPlugin implements Listener {
 
     @Override
     public void onDisable() {
-        //TODO Send save signal to modules
-
-
+        this.moduleLoader.onServerShutdown();
     }
 
     public static void registerEvent(final Listener eventListener) {
         INSTANCE.getServer().getPluginManager().registerEvents(eventListener, INSTANCE);
+    }
+
+    public static void registerCommand(final String commandName, final CommandExecutor executor) {
+        Bukkit.getLogger().info(convert("&fAttempting to register command&b%s".formatted(commandName)));
+        INSTANCE.getCommand(commandName).setExecutor(executor);
     }
 
     public void loadInventoryModule() {

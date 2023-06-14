@@ -1,6 +1,6 @@
 package com.burchard36.cloudlite.module;
 
-import com.burchard36.cloudlite.gui.GuiManager;
+import com.burchard36.cloudlite.CloudLiteCore;
 import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,8 +21,8 @@ public class ModuleLoader {
         this.modules.add(pluginModule);
     }
 
-    public void onServerLoadUp(final GuiManager guiManager) {
-
+    public void onServerLoadUp(final CloudLiteCore coreInstance) {
+        this.modules.forEach(m -> m.loadModule(coreInstance));
     }
 
     public void onDatabaseLoad(final HeadDatabaseAPI headDatabaseAPI) {
@@ -30,11 +30,14 @@ public class ModuleLoader {
     }
 
     public void onServerEnable() {
+        this.modules.forEach(PluginModule::enableModule);
+    }
 
+    public void onServerShutdown() {
+        this.modules.forEach(PluginModule::disableModule);
     }
 
     public void reloadModules() {
         this.modules.forEach(PluginModule::reload);
     }
-
 }

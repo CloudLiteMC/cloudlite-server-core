@@ -14,10 +14,13 @@ public interface PluginModule {
 
     /**
      * Simulated {@link JavaPlugin#onEnable()} for PluginModules
-     * @param guiManager {@link GuiManager} so a static getter doesn't need to be mindlessly created
      */
-    void startModule(final GuiManager guiManager);
+    void enableModule();
 
+    /**
+     * Simulates {@link JavaPlugin#onDisable()} for PluginModules
+     */
+    void disableModule();
     /**
      * Calls when HeadDatabaseAPI Connects to the HeadDatabase
      */

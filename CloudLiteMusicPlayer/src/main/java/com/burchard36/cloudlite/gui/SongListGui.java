@@ -10,20 +10,26 @@ import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import static com.burchard36.cloudlite.utils.StringUtils.convert;
 
 public class SongListGui extends PaginatedInventory {
     protected final CloudLiteMusicPlayer moduleInstance;
+    protected final HeadDatabaseAPI headDatabaseAPI;
+    protected final GuiManager guiManager;
     protected final MusicPlayer musicPlayer;
 
     public SongListGui(CloudLiteMusicPlayer moduleInstance) {
         this.moduleInstance = moduleInstance;
         this.musicPlayer = this.moduleInstance.getMusicPlayer();
-
+        this.guiManager = moduleInstance.getPluginInstance().getGuiManager();
+        this.headDatabaseAPI = this.moduleInstance.getHeadDatabaseAPI();
         int totalPages = musicPlayer.getMusicConfig().getSongDataList().size() / 45;
         if (totalPages == 0) totalPages = 1;
 
@@ -60,8 +66,13 @@ public class SongListGui extends PaginatedInventory {
                         });
                     }
 
+                    this.addButton(46, backgroundItem());
+                    this.addButton(47, backgroundItem());
+                    this.addButton(48, backgroundItem());
+                    this.addButton(50, backgroundItem());
+                    this.addButton(51, backgroundItem());
                     this.addButton(52, backgroundItem());
-                    this.addButton(53, new InventoryButton(CloudLiteCore.getHeadDatabaseAPI().getItemHead("60723")) {
+                    this.addButton(53, new InventoryButton(getNextButton()) {
                         @Override
                         public void onClick(InventoryClickEvent clickEvent) {
                             final Player player = (Player) clickEvent.getWhoClicked();
@@ -73,7 +84,29 @@ public class SongListGui extends PaginatedInventory {
                             }
 
                             player.closeInventory();
-                            CloudLiteCore.getGuiManager().openPaginatedTo();
+                            guiManager.openPaginatedTo(player, nextPage, SongListGui.this);
+                        }
+                    });
+                    this.addButton(45, new InventoryButton(getPreviousButton()) {
+                        @Override
+                        public void onClick(InventoryClickEvent clickEvent) {
+                            final Player player = (Player) clickEvent.getWhoClicked();
+                            int previousPage = finalCurrentPage - 1;
+                            if (finalTotalPages == 1 || previousPage < 0) {
+                                player.playSound(player, Sound.ENTITY_VILLAGER_NO, 1.0F, 1.0F);
+                                player.sendMessage(convert("&cThis is the first page"));
+                                return;
+                            }
+
+                            player.closeInventory();
+                            guiManager.openPaginatedTo(player, previousPage, SongListGui.this);
+                        }
+                    });
+
+                    this.addButton(49, new InventoryButton(getNextSongButton()) {
+                        @Override
+                        public void onClick(InventoryClickEvent clickEvent) {
+                            musicPlayer.playFor((Player) clickEvent.getWhoClicked());
                         }
                     });
                 }
@@ -83,11 +116,22 @@ public class SongListGui extends PaginatedInventory {
     }
 
     private InventoryButton backgroundItem() {
-        return new InventoryButton(ItemUtils.createItemStack(Material.CYAN_STAINED_GLASS_PANE, "&f ", null) {
+        return new InventoryButton(ItemUtils.createItemStack(Material.CYAN_STAINED_GLASS_PANE, "&f ", null)) {
             @Override
             public void onClick(InventoryClickEvent clickEvent) {
 
             }
         };
+    }
+
+    private ItemStack getNextButton() {
+        return ItemUtils.modify(headDatabaseAPI.getItemHead("60723"), "&a&lNEXT PAGE");
+    }
+    private ItemStack getPreviousButton() {
+        return ItemUtils.modify(headDatabaseAPI.getItemHead("60721"), "&a&lPREVIOUS PAGE");
+    }
+
+    private ItemStack getNextSongButton() {
+        return ItemUtils.modify(headDatabaseAPI.getItemHead("32818"), "&b&lPLAY NEXT SONG");
     }
 }
