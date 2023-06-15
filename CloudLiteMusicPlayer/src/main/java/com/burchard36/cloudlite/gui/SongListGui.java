@@ -108,7 +108,6 @@ public class SongListGui extends PaginatedInventory {
                         }
                     });
 
-                    Bukkit.broadcastMessage("Calling super....");
                     super.fillButtons(); // actually sets them in the inventory
                 }
 

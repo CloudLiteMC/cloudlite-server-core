@@ -17,6 +17,10 @@ public class AutoCompressorMaterial {
 
     @Getter
     protected final AutoCompressorCosts autoCompressorCosts;
+    @Getter
+    protected final AutoCompressorCosts autoSuperCompressorCosts;
+    @Getter
+    protected final AutoCompressorCosts autoMegaCompressorCosts;
     private final ItemStack compressedItem;
     private final ItemStack superCompressedItem;
     private final ItemStack megaCompressedItem;
@@ -36,6 +40,8 @@ public class AutoCompressorMaterial {
         this.megaCompressedItem = this.getItemStack(requireNonNull(config.getConfigurationSection("MegaCompressor")));
 
         this.autoCompressorCosts = new AutoCompressorCosts(requireNonNull(config.getConfigurationSection("Compressor.BuyPrice")));
+        this.autoSuperCompressorCosts = new AutoCompressorCosts(requireNonNull(config.getConfigurationSection("SuperCompressor.BuyPrice")));
+        this.autoMegaCompressorCosts = new AutoCompressorCosts(requireNonNull(config.getConfigurationSection("MegaCompressor.BuyPrice")));
         this.guiMaterial = Material.getMaterial(requireNonNull(config.getString("Gui.Material")));
         this.guiName = config.getString("Gui.Name");
     }

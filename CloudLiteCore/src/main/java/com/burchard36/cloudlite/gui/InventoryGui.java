@@ -34,8 +34,6 @@ public abstract class InventoryGui implements GuiHandler {
     @Override
     public void onInventoryClick(InventoryClickEvent event) {
         final int slotClicked = event.getSlot();
-        Bukkit.broadcastMessage(event.getSlot() + "");
-        Bukkit.broadcastMessage(event.getRawSlot() + "");
         final InventoryButton inventoryButton = this.inventoryButtons.get(slotClicked);
         if (inventoryButton != null) inventoryButton.onClick(event);
     }

@@ -39,6 +39,7 @@ public class CompressorGui extends PaginatedInventory {
         for (int currentPage = 0; currentPage < totalPages; currentPage++) {
 
             int finalCurrentPage = currentPage;
+            int finalTotalPages = totalPages;
             this.addPage(currentPage, new InventoryGui() {
 
                 @Override
@@ -61,7 +62,7 @@ public class CompressorGui extends PaginatedInventory {
                                 final Inventory clickedInventory = clickEvent.getClickedInventory();
                                 assert  clickedInventory != null;
                                 final int clickedSlot = clickEvent.getSlot();
-                                if (!materialData.canCompress(compressorPlayer)) {
+                                if (!materialData.canAutoCompress(compressorPlayer)) {
 
                                     if (materialData.getAutoCompressorCosts().canAfford(compressorPlayer, moduleInstance)) {
                                         materialData.giveCompressorAccess(compressorPlayer);
@@ -82,7 +83,6 @@ public class CompressorGui extends PaginatedInventory {
                                     player.sendMessage(convert("&aSuccessfully enabled the compressor!"));
                                     materialData.setCompressorEnabled(compressorPlayer, true);
                                     player.playSound(player, Sound.BLOCK_LEVER_CLICK, 1.0F, 1.0F);
-
                                 }
 
                                 clickedInventory.setItem(clickedSlot, applyCompressorLoreTo(materialData, compressorPlayer));
@@ -91,6 +91,55 @@ public class CompressorGui extends PaginatedInventory {
                         });
                     }
 
+                    this.addButton(46, backgroundItem());
+                    this.addButton(47, backgroundItem());
+                    this.addButton(48, backgroundItem());
+                    this.addButton(50, backgroundItem());
+                    this.addButton(51, backgroundItem());
+                    this.addButton(52, backgroundItem());
+
+                    this.addButton(53, new InventoryButton(ItemUtils.createSkull("ff9e19e5f2ce3488c29582b6d2601500626e8db2a88cd18164432fef2e34de6b", "&3&lNEXT PAGE >>", null)) {
+                        @Override
+                        public void onClick(InventoryClickEvent clickEvent) {
+                            final Player player = (Player) clickEvent.getWhoClicked();
+                            int nextPage = finalCurrentPage + 1;
+                            if (finalTotalPages == 1 || nextPage >= finalTotalPages) {
+                                player.playSound(player, Sound.ENTITY_VILLAGER_NO, 1.0F, 1.0F);
+                                player.sendMessage(convert("&cThis is the final page"));
+                                return;
+                            }
+
+                            player.closeInventory();
+                            player.playSound(player, Sound.BLOCK_LEVER_CLICK, 1.0F, 1.0F);
+                            moduleInstance.getPluginInstance().getGuiManager().openPaginatedTo(player, nextPage, CompressorGui.this);
+                        }
+                    });
+
+                    this.addButton(45, new InventoryButton(ItemUtils.createSkull("f006ec1eca2f2685f70e65411cfe8808a088f7cf08087ad8eece9618361070e3", "&3&l<< PREVIOUS PAGE", null)) {
+
+                        @Override
+                        public void onClick(InventoryClickEvent clickEvent) {
+                            final Player player = (Player) clickEvent.getWhoClicked();
+                            int previousPage = finalCurrentPage - 1;
+                            if (finalTotalPages == 1 || previousPage < 0) {
+                                player.playSound(player, Sound.ENTITY_VILLAGER_NO, 1.0F, 1.0F);
+                                player.sendMessage(convert("&cThis is the first page"));
+                                return;
+                            }
+
+                            player.closeInventory();
+                            player.playSound(player, Sound.BLOCK_LEVER_CLICK, 1.0F, 1.0F);
+                            moduleInstance.getPluginInstance().getGuiManager().openPaginatedTo(player, previousPage, CompressorGui.this);
+                        }
+                    });
+
+                    this.addButton(49, new InventoryButton(ItemUtils.createItemStack(Material.ARROW, "&cPrevious Menu", null)) {
+                        @Override
+                        public void onClick(InventoryClickEvent clickEvent) {
+                            clickEvent.getWhoClicked().closeInventory();
+                            moduleInstance.getPluginInstance().getGuiManager().openInventoryTo((Player) clickEvent.getWhoClicked(), new ChooseCompressorTypeGui(moduleInstance));
+                        }
+                    });
                     super.fillButtons();
                 }
 
@@ -103,6 +152,15 @@ public class CompressorGui extends PaginatedInventory {
         }
     }
 
+    private InventoryButton backgroundItem() {
+        return new InventoryButton(ItemUtils.createItemStack(Material.CYAN_STAINED_GLASS_PANE, "&f ", null)) {
+            @Override
+            public void onClick(InventoryClickEvent clickEvent) {
+
+            }
+        };
+    }
+
     public final ItemStack applyCompressorLoreTo(final AutoCompressorMaterial materialData,
                                                  final CompressorPlayer compressorPlayer) {
         final ItemStack displayItem = materialData.getGuiItem();
@@ -110,7 +168,7 @@ public class CompressorGui extends PaginatedInventory {
         final AutoCompressorCosts costs = materialData.getAutoCompressorCosts();
 
         /* Player doesn't have the auto compress tag, show the buy item for them */
-        if (!materialData.canCompress(compressorPlayer)) {
+        if (!materialData.canAutoCompress(compressorPlayer)) {
             final ItemStack costItem = costs.getItem(this.moduleInstance);
             String costDisplayName;
             if (costItem.hasItemMeta()) {

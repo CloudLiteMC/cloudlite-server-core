@@ -97,7 +97,10 @@ public class ChooseCompressorTypeGui extends InventoryGui {
                 "&7Compressors for compressing items into they're &eSuper Compressed&7 form!")) {
             @Override
             public void onClick(InventoryClickEvent clickEvent) {
-
+                final Player player = (Player) clickEvent.getWhoClicked();
+                player.closeInventory();
+                moduleInstance.getPluginInstance().getGuiManager()
+                        .openPaginatedTo((Player) clickEvent.getWhoClicked(), 0, new SuperCompressorGui(moduleInstance, player));
             }
         };
     }
@@ -108,7 +111,10 @@ public class ChooseCompressorTypeGui extends InventoryGui {
                 "&7Compressors for compressing items into they're &eMega Compressed&7 form!")) {
             @Override
             public void onClick(InventoryClickEvent clickEvent) {
-
+                final Player player = (Player) clickEvent.getWhoClicked();
+                player.closeInventory();
+                moduleInstance.getPluginInstance().getGuiManager()
+                        .openPaginatedTo((Player) clickEvent.getWhoClicked(), 0, new MegaCompressorGui(moduleInstance, player));
             }
         };
     }
