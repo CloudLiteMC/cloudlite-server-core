@@ -144,6 +144,7 @@ public class AutoCompressorMaterial {
      */
     public final void giveCompressorAccess(final @NonNull CompressorPlayer compressorPlayer) {
         compressorPlayer.giveKey(this.getCompressedKey(), PersistentDataType.BYTE, (byte) 0x00);
+        this.setCompressorEnabled(compressorPlayer, true);
     }
 
     /**

@@ -51,6 +51,18 @@ public class ItemUtils {
         return itemStack;
     }
 
+    public static ItemStack modify(final ItemStack itemStack, final String... lore) {
+        final ItemMeta meta = itemStack.getItemMeta();
+        assert  meta != null;
+        final List<String> newLore = new ArrayList<>();
+        for (String line : lore) {
+            newLore.add(convert(line));
+        }
+        meta.setLore(newLore);
+        itemStack.setItemMeta(meta);
+        return itemStack;
+    }
+
     public static ItemStack createItemStack(
             final String materialName,
             @Nullable final String displayName,

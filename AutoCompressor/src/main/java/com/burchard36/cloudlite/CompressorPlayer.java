@@ -10,9 +10,12 @@ public class CompressorPlayer {
 
     @Getter
     private final PersistentDataContainer playerContainer;
+    @Getter
+    private final Player player;
 
     public CompressorPlayer(final Player player) {
-        this.playerContainer = player.getPersistentDataContainer();
+        this.player = player;
+        this.playerContainer = this.player.getPersistentDataContainer();
     }
 
     public final boolean hasKey(final NamespacedKey key, PersistentDataType<?, ?> types) {

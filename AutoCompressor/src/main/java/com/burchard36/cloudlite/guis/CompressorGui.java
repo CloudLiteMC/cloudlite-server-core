@@ -12,6 +12,8 @@ import com.burchard36.cloudlite.utils.ItemUtils;
 import com.burchard36.cloudlite.utils.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -26,7 +28,8 @@ public class CompressorGui extends PaginatedInventory {
     protected final AutoCompressorModule moduleInstance;
     protected final AutoCompressorConfig config;
 
-    public CompressorGui(final AutoCompressorModule moduleInstance) {
+    public CompressorGui(final AutoCompressorModule moduleInstance, final Player player) {
+        final CompressorPlayer compressorPlayer = new CompressorPlayer(player);
         this.moduleInstance = moduleInstance;
         this.config = this.moduleInstance.getAutoCompressorConfig();
 
@@ -52,10 +55,37 @@ public class CompressorGui extends PaginatedInventory {
 
                         final AutoCompressorMaterial materialData = config.getCompressedMaterials().values().stream().collect(Collectors.toList()).get(0);
 
-                        this.addButton(x, new InventoryButton(materialData.getGuiMaterial()) {
+                        this.addButton(x, new InventoryButton(applyCompressorLoreTo(materialData, compressorPlayer)) {
                             @Override
                             public void onClick(InventoryClickEvent clickEvent) {
+                                final Inventory clickedInventory = clickEvent.getClickedInventory();
+                                assert  clickedInventory != null;
+                                final int clickedSlot = clickEvent.getSlot();
+                                if (!materialData.canCompress(compressorPlayer)) {
 
+                                    if (materialData.getAutoCompressorCosts().canAfford(compressorPlayer, moduleInstance)) {
+                                        materialData.giveCompressorAccess(compressorPlayer);
+                                        materialData.getAutoCompressorCosts().removeCosts(compressorPlayer, moduleInstance);
+                                        player.playSound(player, Sound.ENTITY_VILLAGER_YES, 1.0F, 1.0F);
+                                        player.sendMessage(convert("&aSuccessfully purchased!"));
+
+                                    } else {
+                                        player.playSound(player, Sound.ENTITY_VILLAGER_NO, 1.0F, 1.0F);
+                                        player.sendMessage(convert("&cYou can't afford this!"));
+                                    }
+
+                                } else if (materialData.hasCompressorEnabled(compressorPlayer)) {
+                                    player.sendMessage(convert("&cSuccessfully disabled the compressor!"));
+                                    materialData.setCompressorEnabled(compressorPlayer, false);
+
+                                } else {
+                                    player.sendMessage(convert("&aSuccessfully enabled the compressor!"));
+                                    materialData.setCompressorEnabled(compressorPlayer, true);
+
+                                }
+
+                                clickedInventory.setItem(clickedSlot, applyCompressorLoreTo(materialData, compressorPlayer));
+                                compressorPlayer.getPlayer().updateInventory();
                             }
                         });
                     }
@@ -72,10 +102,9 @@ public class CompressorGui extends PaginatedInventory {
         }
     }
 
-    public final ItemStack applyCompressorLoreTo(
-            final ItemStack displayItem,
-            final AutoCompressorMaterial materialData,
-            final CompressorPlayer compressorPlayer) {
+    public final ItemStack applyCompressorLoreTo(final AutoCompressorMaterial materialData,
+                                                 final CompressorPlayer compressorPlayer) {
+        final ItemStack displayItem = materialData.getGuiMaterial();
         assert displayItem.getItemMeta() != null;
         final AutoCompressorCosts costs = materialData.getAutoCompressorCosts();
 
@@ -101,12 +130,20 @@ public class CompressorGui extends PaginatedInventory {
         }
 
         if (materialData.hasCompressorEnabled(compressorPlayer)) {
-
+            /* Player has the compressor unlocked and enabled, click to show the disable item for them */
+            return ItemUtils.modify(displayItem,
+                    "&f ",
+                    "&aThis compressor is currently enabled!",
+                    "&f ",
+                    "&eClick&7 to disable this compressor!");
         } else {
             /* Player doesn't have the compressor enabled, show the click to enable item for them */
-            
+            return ItemUtils.modify(displayItem,
+                    "&f",
+                    "&cThis compressor is currently disabled!",
+                    "&f ",
+                    "&eClick&7 to re-enable this compressor!");
         }
-
     }
 
 }
