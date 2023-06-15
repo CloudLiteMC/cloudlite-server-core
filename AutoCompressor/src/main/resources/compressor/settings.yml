@@ -1,0 +1,2 @@
+# Set to true if you want all ops to bypass the access checks for compressor materials
+OpsBypassChecks: true

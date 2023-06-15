@@ -1,7 +1,9 @@
 package com.burchard36.cloudlite.utils;
 
 import lombok.NonNull;
+import org.apache.commons.lang.WordUtils;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 /**
@@ -10,6 +12,10 @@ import org.bukkit.entity.Player;
 public class StringUtils {
 
     private final static int CENTER_PX = 154;
+
+    public static String getPrettyMaterialName(final Material material) {
+        return WordUtils.capitalizeFully(material.name().toLowerCase().replace('_', ' '));
+    }
 
     public static @NonNull String convert(final String toConvert) {
         return ChatColor.translateAlternateColorCodes('&', toConvert);

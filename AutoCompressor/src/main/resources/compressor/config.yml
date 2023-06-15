@@ -1,8 +1,17 @@
 DIRT:
+  Gui:
+    Material: DIRT
+    Name: "&e&lDirt Compressor"
   Compressor:
     DisplayName: "&e&lCompressed Dirt"
     Permission: "autocompress.dirt"
     HeadTexture: "42248"
+    BuyPrice:
+      Item:
+        Material: "COMPRESSED_DIRT"
+        Amount: 8
+      Experience:
+        Level: 2
   SuperCompressor:
     DisplayName: "&e&lSuper Compressed Dirt"
     Permission: "supercompress.dirt"

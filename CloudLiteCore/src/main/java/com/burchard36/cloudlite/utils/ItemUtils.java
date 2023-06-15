@@ -22,7 +22,7 @@ public class ItemUtils {
 
     private static final String TEXTURE_URL = "http://textures.minecraft.net/texture/";
 
-    public static ItemStack createSkull(final String texture, final String displayName, final String... lore) {
+    public static ItemStack createSkull(final String texture, final @Nullable String displayName, final @Nullable String... lore) {
         final ItemStack itemStack = createItemStack(Material.PLAYER_HEAD, displayName, lore);
         final SkullMeta skullMeta = (SkullMeta) itemStack;
         setSkullTextures(texture, skullMeta);
@@ -54,8 +54,18 @@ public class ItemUtils {
     public static ItemStack createItemStack(
             final String materialName,
             @Nullable final String displayName,
-            final String... lore) {
+            final @Nullable String... lore) {
         return createItemStack(Material.valueOf(materialName), displayName, lore);
+    }
+
+    public static ItemStack createItemStack(
+            final String materialName,
+            final int amount,
+            @Nullable final String displayName,
+            @Nullable final String... lore) {
+        final ItemStack stack = createItemStack(materialName, displayName, lore);
+        stack.setAmount(amount);
+        return stack;
     }
 
     public static ItemStack createItemStack(

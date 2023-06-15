@@ -11,10 +11,12 @@
         <module name="ServerPlugin" />
         <module name="AutoCompressor" />
         <module name="MMOItemsLevelUp" />
+        <module name="BlockDropsEditor" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="AutoCompressor" target="17" />
+      <module name="BlockDropsEditor" target="17" />
       <module name="CloudLiteCore" target="17" />
       <module name="CloudliteMCServerCore" target="17" />
       <module name="CloudLiteMusicPlayer" target="17" />

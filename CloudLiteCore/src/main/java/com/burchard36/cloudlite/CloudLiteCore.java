@@ -7,6 +7,7 @@ import com.burchard36.cloudlite.module.ModuleLoader;
 import lombok.Getter;
 import me.arcaniax.hdb.api.DatabaseLoadEvent;
 import me.arcaniax.hdb.api.HeadDatabaseAPI;
+import net.milkbowl.vault.permission.Permission;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.event.EventHandler;
@@ -31,6 +32,8 @@ public abstract class CloudLiteCore extends JavaPlugin implements Listener {
     private Random random;
     @Getter
     private GuiManager guiManager;
+    @Getter
+    private Permission vaultPermissions;
     private GuiEvents guiEvents;
 
     @Override

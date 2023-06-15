@@ -1,6 +1,5 @@
 package com.burchard36.cloudlite.gui;
 
-import com.burchard36.cloudlite.CloudLiteCore;
 import com.burchard36.cloudlite.CloudLiteMusicPlayer;
 import com.burchard36.cloudlite.MusicPlayer;
 import com.burchard36.cloudlite.config.SongData;
@@ -10,12 +9,10 @@ import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import static com.burchard36.cloudlite.utils.StringUtils.convert;
 
@@ -55,9 +52,8 @@ public class SongListGui extends PaginatedInventory {
                 public void fillButtons() {
                     int startAt = finalCurrentPage * 45; // only display 45 songs per page
                     for (int x = 0; x < musicPlayer.getMusicConfig().getSongDataList().size(); x++) {
-                        if (startAt > x) {
-                            continue;
-                        }
+                        if (startAt > x) continue;
+
                         final SongData songData = musicPlayer.getMusicConfig().getSongDataList().get(x);
 
                         this.addButton(x, new InventoryButton(songData.getDisplayItem()) {
