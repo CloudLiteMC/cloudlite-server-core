@@ -4,8 +4,7 @@ DIRT:
     Name: "&e&lDirt Compressor"
   Compressor:
     DisplayName: "&e&lCompressed Dirt"
-    Permission: "autocompress.dirt"
-    HeadTexture: "42248"
+    HeadTexture: "1ab43b8c3d34f125e5a3f8b92cd43dfd14c62402c33298461d4d4d7ce2d3aea"
     BuyPrice:
       Item:
         Material: "COMPRESSED_DIRT"
@@ -14,55 +13,81 @@ DIRT:
         Level: 2
   SuperCompressor:
     DisplayName: "&e&lSuper Compressed Dirt"
-    Permission: "supercompress.dirt"
-    HeadTexture: "42248"
+    HeadTexture: "eea675e6d3c154430acf74958761db8003d46bab3275344dbe5d303e223bcdf9"
+    BuyPrice:
+      Item:
+        Material: "SUPER_COMPRESSED_DIRT"
+        Amount: 8
+      Experience:
+        Level: 16
   MegaCompressor:
     DisplayName: "&e&lMega Compressed Dirt"
-    Permission: "megacompress.dirt"
-    HeadTexture: "42248"
-  OAK_LOG:
-    Name: "&e&lCompressed Oak Log"
-    Permission: "autocompress.oak"
-    HeadsDb: "46832"
-  WHEAT:
-    Name: "&e&lCompressed Wheat"
-    Permission: "autocompress.wheat"
-    HeadsDb: "29487"
-  COBBLESTONE:
-    Name: "&e&lCompressed Cobblestone"
-    Permission: "autocompress.cobblestone"
-    HeadsDb: "52913"
-  COAL:
-    Name: "&e&lCompressed Coal"
-    Permission: "autocompress.coal"
-    HeadsDb: "29479"
-  IRON_INGOT:
-    Name: "&e&lCompressed Iron"
-    Permission: "autocompress.iron"
-    HeadsDb: "52910"
-
-SuperCompressor:
-  DIRT:
-    Name: "&6&lSuper Compressed Dirt"
-    Permission: "supercompress.dirt"
-    HeadTexture: "20502"
-  OAK_LOG:
-    Name: "&e&lSuper Compressed Oak Log"
-    Permission: "supercompress.oak"
-    HeadTexture: "46062"
-  WHEAT:
-    Name: "&e&lSuper Compressed Wheat"
-    Permission: "supercompress.wheat"
-    HeadTexture: "46089"
-  COBBLESTONE:
-    Name: "&e&lSuper Compressed Cobblestone"
-    Permission: "supercompress.cobblestone"
-    HeadTexture: "45872"
-  COAL:
-    Name: "&e&lSuper Compressed Coal"
-    Permission: "supercompress.coal"
-    HeadTexture: "41725"
-  IRON_INGOT:
-    Name: "&e&lSuper Compressed Iron"
-    Permission: "supercompress.iron"
-    HeadTexture: "51469"
+    HeadTexture: "96c8447a8b6b0e0c7e7629c6898ec9c749a7a0a2b452b9c3852c7847bb4dc5"
+    BuyPrice:
+      Item:
+        Material: "MEGA_COMPRESSED_DIRT"
+        Amount: 8
+      Experience:
+        Level: 32
+COBBLESTONE:
+  Gui:
+    Material: COBBLESTONE
+    Name: "&e&lCobblestone Compressor"
+  Compressor:
+    DisplayName: "&e&lCompressed Cobblestone"
+    HeadTexture: "ee54abbc65b13a42c29590a0cf9d3e00702d1e60d974f9286a7c17267f2282c9"
+    BuyPrice:
+      Item:
+        Material: "COMPRESSED_COBBLESTONE"
+        Amount: 12
+      Experience:
+        Level: 4
+  SuperCompressor:
+    DisplayName: "&e&lSuper Compressed Cobblestone"
+    HeadTexture: "494ba6e8248eaebdfb2a5836b88c774c8eb481f0b972a78b1cd2b2483a6e24b4"
+    BuyPrice:
+      Item:
+        Material: "SUPER_COMPRESSED_COBBLESTONE"
+        Amount: 24
+      Experience:
+        Level: 12
+  MegaCompressor:
+    DisplayName: "&e&lMega Compressed Cobblestone"
+    HeadTexture: "82dd52a1bd0733ae3321f4162b7972d94304c1585c3a62a40ebd6f06f0f2c4c"
+    BuyPrice:
+      Item:
+        Material: "MEGA_COMPRESSED_COBBLESTONE"
+        Amount: 24
+      Experience:
+        Level: 12
+OAK_LOG:
+  Gui:
+    Material: OAK_LOG
+    Name: "&e&lOak Log Compressor"
+  Compressor:
+    DisplayName: "&e&lCompressed Oak Log"
+    HeadTexture: "5f497786d7ba192369932966686aa9fb7147fa5884f9a6209c4a73e2d60f39f5"
+    BuyPrice:
+      Item:
+        Material: "COMPRESSED_OAK_LOG"
+        Amount: 8
+      Experience:
+        Level: 4
+  SuperCompressor:
+    DisplayName: "&e&lSuper Compressed Oak Log"
+    HeadTexture: "edab76eec1fb1eb6378bb65e2148e8b8d9c93196f267abea9eb7e1fc74e9b03a"
+    BuyPrice:
+      Item:
+        Material: "SUPER_COMPRESSED_OAK_LOG"
+        Amount: 16
+      Experience:
+        Level: 16
+  MegaCompressor:
+    DisplayName: "&e&lMega Compressed Oak Log"
+    HeadTexture: "4acefe566364be6d1cdd83af2797ed473ce7560298535315c3f22db6e2158ea6"
+    BuyPrice:
+      Item:
+        Material: "MEGA_COMPRESSED_OAK_LOG"
+        Amount: 28
+      Experience:
+        Level: 24

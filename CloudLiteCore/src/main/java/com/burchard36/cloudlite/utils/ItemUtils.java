@@ -24,7 +24,7 @@ public class ItemUtils {
 
     public static ItemStack createSkull(final String texture, final @Nullable String displayName, final @Nullable String... lore) {
         final ItemStack itemStack = createItemStack(Material.PLAYER_HEAD, displayName, lore);
-        final SkullMeta skullMeta = (SkullMeta) itemStack;
+        final SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
         setSkullTextures(texture, skullMeta);
         itemStack.setItemMeta(skullMeta);
         return itemStack;
@@ -82,8 +82,8 @@ public class ItemUtils {
 
     public static ItemStack createItemStack(
             final Material material,
-            final String displayName,
-            final String... lore) {
+            @Nullable final String displayName,
+            @Nullable final String... lore) {
         final ItemStack itemStack = new ItemStack(material);
         if (displayName == null && lore == null) return itemStack;
         final ItemMeta itemMeta = itemStack.getItemMeta();
@@ -92,6 +92,7 @@ public class ItemUtils {
         if (lore != null) {
             final List<String> itemLore = new ArrayList<>();
             for (String loreLine : lore) {
+                if (loreLine == null) continue;
                 itemLore.add(convert(loreLine));
             }
             itemMeta.setLore(itemLore);

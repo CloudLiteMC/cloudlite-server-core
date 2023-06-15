@@ -1,12 +1,10 @@
 package com.burchard36.cloudlite.config;
 
-import com.burchard36.cloudlite.AutoCompressor;
 import lombok.Getter;
 import lombok.NonNull;
 import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;

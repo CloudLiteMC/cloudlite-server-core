@@ -11,8 +11,6 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.persistence.PersistentDataType;
 
-import java.util.Objects;
-
 import static java.util.Objects.requireNonNull;
 
 public class AutoCompressorMaterial {
@@ -23,12 +21,6 @@ public class AutoCompressorMaterial {
     private final ItemStack superCompressedItem;
     private final ItemStack megaCompressedItem;
 
-    @Getter
-    private final String compressedMaterialPermission;
-    @Getter
-    private final String superCompressedMaterialPermission;
-    @Getter
-    private final String megaCompressedMaterialPermission;
     @Getter
     private final Material thisMaterial;
     @Getter
@@ -43,10 +35,7 @@ public class AutoCompressorMaterial {
         this.superCompressedItem = this.getItemStack(requireNonNull(config.getConfigurationSection("SuperCompressor")));
         this.megaCompressedItem = this.getItemStack(requireNonNull(config.getConfigurationSection("MegaCompressor")));
 
-        this.autoCompressorCosts = new AutoCompressorCosts(requireNonNull(config.getConfigurationSection("BuyPrice")));
-        this.compressedMaterialPermission = config.getString("Compressor.Permission");
-        this.superCompressedMaterialPermission = config.getString("SuperCompressor.Permission");
-        this.megaCompressedMaterialPermission = config.getString("MegaCompressor.Permission");
+        this.autoCompressorCosts = new AutoCompressorCosts(requireNonNull(config.getConfigurationSection("Compressor.BuyPrice")));
         this.guiMaterial = Material.getMaterial(requireNonNull(config.getString("Gui.Material")));
         this.guiName = config.getString("Gui.Name");
     }
@@ -54,7 +43,7 @@ public class AutoCompressorMaterial {
     private ItemStack getItemStack(final ConfigurationSection config) {
         final String skullTexture = config.getString("HeadTexture");
         final String displayName = config.getString("DisplayName");
-        return ItemUtils.createSkull(skullTexture, displayName, (String) null);
+        return ItemUtils.createSkull(skullTexture, displayName, null);
     }
 
     public ItemStack getCompressedItem() {
@@ -130,11 +119,11 @@ public class AutoCompressorMaterial {
     }
 
     /**
-     * Checks if a player has access to compress this material
+     * Checks if a player has access to auto compress this material
      * @param compressorPlayer {@link CompressorPlayer}
      * @return true if they have access to compress the material
      */
-    public final boolean canCompress(final @NonNull CompressorPlayer compressorPlayer) {
+    public final boolean canAutoCompress(final @NonNull CompressorPlayer compressorPlayer) {
         return compressorPlayer.hasKey(this.getCompressedKey(), PersistentDataType.BYTE);
     }
 
@@ -148,12 +137,12 @@ public class AutoCompressorMaterial {
     }
 
     /**
-     * Grants the compressor enabled flag to the player if they pass {@link AutoCompressorMaterial#canCompress(CompressorPlayer)} checks
+     * Grants the compressor enabled flag to the player if they pass {@link AutoCompressorMaterial#canAutoCompress(CompressorPlayer)} checks
      * @param compressorPlayer {@link CompressorPlayer}
      * @param enable true if you want the compressor to be enabled
      */
     public final void setCompressorEnabled(final @NonNull CompressorPlayer compressorPlayer, boolean enable) {
-        if (!this.canCompress(compressorPlayer)) return;
+        if (!this.canAutoCompress(compressorPlayer)) return;
         if (enable && this.hasCompressorEnabled(compressorPlayer)) return;
         if (!enable && this.hasCompressorEnabled(compressorPlayer)) {
             compressorPlayer.removeKey(this.compressorEnabledKey());
@@ -173,11 +162,11 @@ public class AutoCompressorMaterial {
 
 
     /**
-     * Checks if a player has access to super compress this material
+     * Checks if a player has access to auto super compress this material
      * @param compressorPlayer {@link CompressorPlayer}
      * @return true if they have access to super compress the material
      */
-    public final boolean canSuperCompress(final @NonNull CompressorPlayer compressorPlayer) {
+    public final boolean canAutoSuperCompress(final @NonNull CompressorPlayer compressorPlayer) {
         return compressorPlayer.hasKey(this.getSuperCompressedKey(), PersistentDataType.BYTE);
     }
 
@@ -190,12 +179,12 @@ public class AutoCompressorMaterial {
     }
 
     /**
-     * Grants the super compressor enabled flag to the player if they pass {@link AutoCompressorMaterial#canSuperCompress(CompressorPlayer)} checks
+     * Grants the super compressor enabled flag to the player if they pass {@link AutoCompressorMaterial#canAutoSuperCompress(CompressorPlayer)} checks
      * @param compressorPlayer {@link CompressorPlayer}
      * @param enable true if you want the super compressor to be enabled
      */
     public final void setSuperCompressorEnabled(final @NonNull CompressorPlayer compressorPlayer, boolean enable) {
-        if (!this.canSuperCompress(compressorPlayer)) return;
+        if (!this.canAutoSuperCompress(compressorPlayer)) return;
         if (enable && this.hasSuperCompressorEnabled(compressorPlayer)) return;
         if (!enable && this.hasSuperCompressorEnabled(compressorPlayer)) {
             compressorPlayer.removeKey(this.superCompressorEnabledKey());
@@ -214,11 +203,11 @@ public class AutoCompressorMaterial {
     }
 
     /**
-     * Checks if a player has access to mega compress this material
+     * Checks if a player has access to auto mega compress this material
      * @param compressorPlayer {@link CompressorPlayer}
      * @return true if they have access to mega compress the material
      */
-    public final boolean canMegaCompress(final @NonNull CompressorPlayer compressorPlayer) {
+    public final boolean canAutoMegaCompress(final @NonNull CompressorPlayer compressorPlayer) {
         return compressorPlayer.hasKey(this.getMegaCompressedKey(), PersistentDataType.BYTE);
     }
 
@@ -231,12 +220,12 @@ public class AutoCompressorMaterial {
     }
 
     /**
-     * Grants the mega compressor enabled flag to the player if they pass {@link AutoCompressorMaterial#canMegaCompress(CompressorPlayer)} checks
+     * Grants the mega compressor enabled flag to the player if they pass {@link AutoCompressorMaterial#canAutoMegaCompress(CompressorPlayer)} checks
      * @param compressorPlayer {@link CompressorPlayer}
      * @param enable true if you want the mega compressor to be enabled
      */
     public final void setMegaCompressorEnabled(final @NonNull CompressorPlayer compressorPlayer, boolean enable) {
-        if (!this.canMegaCompress(compressorPlayer)) return;
+        if (!this.canAutoMegaCompress(compressorPlayer)) return;
         if (enable && this.hasMegaCompressorEnabled(compressorPlayer)) return;
         if (!enable && this.hasMegaCompressorEnabled(compressorPlayer)) {
             compressorPlayer.removeKey(this.megaCompressorEnabledKey());
@@ -269,8 +258,8 @@ public class AutoCompressorMaterial {
                 .has(this.getMegaCompressedKey(), PersistentDataType.BYTE);
     }
 
-    public ItemStack getGuiMaterial() {
-        return ItemUtils.createItemStack(this.guiMaterial, this.guiName, (String) null);
+    public ItemStack getGuiItem() {
+        return ItemUtils.createItemStack(this.guiMaterial, this.guiName, null);
     }
 
 }

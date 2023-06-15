@@ -53,7 +53,7 @@ public class CompressorGui extends PaginatedInventory {
                     for (int x = 0; x < config.getCompressedMaterials().size(); x++) {
                         if (startAt > x) continue;
 
-                        final AutoCompressorMaterial materialData = config.getCompressedMaterials().values().stream().collect(Collectors.toList()).get(0);
+                        final AutoCompressorMaterial materialData = config.getCompressedMaterials().values().stream().collect(Collectors.toList()).get(x);
 
                         this.addButton(x, new InventoryButton(applyCompressorLoreTo(materialData, compressorPlayer)) {
                             @Override
@@ -77,10 +77,11 @@ public class CompressorGui extends PaginatedInventory {
                                 } else if (materialData.hasCompressorEnabled(compressorPlayer)) {
                                     player.sendMessage(convert("&cSuccessfully disabled the compressor!"));
                                     materialData.setCompressorEnabled(compressorPlayer, false);
-
+                                    player.playSound(player, Sound.BLOCK_LEVER_CLICK, 1.0F, 1.0F);
                                 } else {
                                     player.sendMessage(convert("&aSuccessfully enabled the compressor!"));
                                     materialData.setCompressorEnabled(compressorPlayer, true);
+                                    player.playSound(player, Sound.BLOCK_LEVER_CLICK, 1.0F, 1.0F);
 
                                 }
 
@@ -104,7 +105,7 @@ public class CompressorGui extends PaginatedInventory {
 
     public final ItemStack applyCompressorLoreTo(final AutoCompressorMaterial materialData,
                                                  final CompressorPlayer compressorPlayer) {
-        final ItemStack displayItem = materialData.getGuiMaterial();
+        final ItemStack displayItem = materialData.getGuiItem();
         assert displayItem.getItemMeta() != null;
         final AutoCompressorCosts costs = materialData.getAutoCompressorCosts();
 
@@ -145,5 +146,4 @@ public class CompressorGui extends PaginatedInventory {
                     "&eClick&7 to re-enable this compressor!");
         }
     }
-
 }

@@ -1,5 +1,6 @@
 package com.burchard36.cloudlite;
 
+import com.burchard36.cloudlite.commands.CompressCommand;
 import com.burchard36.cloudlite.config.AutoCompressorConfig;
 import com.burchard36.cloudlite.events.BreakBlockEvent;
 import com.burchard36.cloudlite.module.PluginModule;
@@ -16,12 +17,13 @@ public final class AutoCompressorModule implements PluginModule {
     @Override
     public void loadModule(CloudLiteCore coreInstance) {
         this.pluginInstance = coreInstance;
-        this.autoCompressor = new AutoCompressor(this);
         this.autoCompressorConfig = this.pluginInstance.getConfigManager().getConfig(new AutoCompressorConfig());
+        this.autoCompressor = new AutoCompressor(this);
     }
 
     @Override
     public void enableModule() {
+        CloudLiteCore.registerCommand("compress", new CompressCommand(this));
         CloudLiteCore.registerEvent(new BreakBlockEvent(this));
     }
 

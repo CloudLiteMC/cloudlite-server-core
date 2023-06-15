@@ -23,3 +23,8 @@ commands:
       - songgui
       - songui
     description: "Displays the Songs GUI"
+  compress:
+    aliases:
+      - compressgui
+      - cgui
+    description: "Opens the AutoCompressorChoice GUI"

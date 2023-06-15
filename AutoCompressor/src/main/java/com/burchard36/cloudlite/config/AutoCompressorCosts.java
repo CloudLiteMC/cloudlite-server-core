@@ -40,6 +40,7 @@ public class AutoCompressorCosts {
     }
 
     public void removeCosts(final CompressorPlayer compressorPlayer, final AutoCompressorModule moduleInstance) {
+        compressorPlayer.getPlayer().getInventory().removeItem(this.getItem(moduleInstance));
         compressorPlayer.getPlayer().getInventory().remove(this.getItem(moduleInstance));
         compressorPlayer.getPlayer().setLevel(compressorPlayer.getPlayer().getLevel() - this.levelCost);
     }
