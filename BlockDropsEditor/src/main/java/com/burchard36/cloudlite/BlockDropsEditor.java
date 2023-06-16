@@ -33,6 +33,5 @@ public final class BlockDropsEditor implements PluginModule {
     @Override
     public void reload() {
         this.blockDropsConfig = this.pluginInstance.getConfigManager().getConfig(new BlockDropsConfig());
-
     }
 }

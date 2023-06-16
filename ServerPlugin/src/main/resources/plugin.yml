@@ -28,3 +28,15 @@ commands:
       - compressgui
       - cgui
     description: "Opens the AutoCompressorChoice GUI"
+  reloadserver:
+    description: "reloads all the modules configuration values"
+  upgradeitem:
+    aliases:
+      - itemupgrade
+      - iupgrade
+      - upgrade
+      - upgradei
+      - mmoupgrade
+      - upgradehand
+      - handupgrade
+    description: "Opens an upgrade GUI for the player if they are holding an upgradeable MMOItem tool."

@@ -6,12 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="CropRegrower" />
+        <module name="AutoCompressor" />
+        <module name="BlockDropsEditor" />
         <module name="CloudLiteMusicPlayer" />
         <module name="CloudLiteCore" />
         <module name="ServerPlugin" />
-        <module name="AutoCompressor" />
         <module name="MMOItemsLevelUp" />
-        <module name="BlockDropsEditor" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -20,7 +21,9 @@
       <module name="CloudLiteCore" target="17" />
       <module name="CloudliteMCServerCore" target="17" />
       <module name="CloudLiteMusicPlayer" target="17" />
+      <module name="CropRegrower" target="17" />
       <module name="MMOItemsLevelUp" target="17" />
+      <module name="RapidCropRegrowth" target="1.8" />
       <module name="ServerPlugin" target="17" />
     </bytecodeTargetLevel>
   </component>

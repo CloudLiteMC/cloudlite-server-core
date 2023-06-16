@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModuleLoader {
+    protected final CloudLiteCore pluginInstance;
     protected final List<PluginModule> modules;
 
-    public ModuleLoader() {
+    public ModuleLoader(final CloudLiteCore pluginInstance) {
+        this.pluginInstance = pluginInstance;
         this.modules = new ArrayList<>();
     }
 
@@ -30,6 +32,7 @@ public class ModuleLoader {
     }
 
     public void reloadModules() {
+        this.pluginInstance.getConfigManager().reloadAll();
         this.modules.forEach(PluginModule::reload);
     }
 

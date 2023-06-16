@@ -1,18 +1,29 @@
 package com.burchard36.cloudlite.gui;
 
+import com.burchard36.cloudlite.config.MMOItemLevelUpData;
 import com.burchard36.cloudlite.gui.buttons.InventoryButton;
 import com.burchard36.cloudlite.utils.ItemUtils;
+import com.burchard36.cloudlite.utils.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.UUID;
 
 import static com.burchard36.cloudlite.utils.StringUtils.convert;
 
 public class UpgradeItemGui extends InventoryGui {
+
+    protected final ItemStack itemInHand;
+    protected final MMOItemLevelUpData levelUpData;
+
+    public UpgradeItemGui(final ItemStack itemInHand, final MMOItemLevelUpData levelUpData) {
+        this.itemInHand = itemInHand;
+        this.levelUpData = levelUpData;
+    }
 
 
     @Override
@@ -41,18 +52,18 @@ public class UpgradeItemGui extends InventoryGui {
         this.addButton(8, backGround);
         this.addButton(9, backGround);
         this.addButton(10, backGround);
-        // = item in hand
+        this.addButton(11, this.currentItemButton());
         this.addButton(12, backGround);
         this.addButton(13, this.createUpgradeToButton());
         this.addButton(14, backGround);
-        // = item in upgrade
+        this.addButton(15, this.nextItemButton());
         this.addButton(16, backGround);
         this.addButton(17, backGround);
         this.addButton(18, backGround);
         this.addButton(19, backGround);
         this.addButton(20, backGround);
         this.addButton(21, backGround);
-        this.addButton(22, backGround);
+        this.addButton(22, this.createUpgradeToButton());
         this.addButton(23, backGround);
         this.addButton(24, backGround);
         this.addButton(25, backGround);
@@ -86,4 +97,60 @@ public class UpgradeItemGui extends InventoryGui {
             }
         };
     }
+
+    protected final InventoryButton currentItemButton() {
+        return new InventoryButton(this.itemInHand) {
+            @Override
+            public void onClick(InventoryClickEvent clickEvent) {
+
+            }
+        };
+    }
+
+    protected final InventoryButton nextItemButton() {
+        return new InventoryButton(this.levelUpData.getUpgradeItem()) {
+            @Override
+            public void onClick(InventoryClickEvent clickEvent) {
+
+            }
+        };
+    }
+
+    protected final InventoryButton getBuyButton() {
+        String costDisplayName;
+        final ItemStack costItem = this.levelUpData.getCostItem();
+        if (costItem.hasItemMeta()) {
+            assert costItem.getItemMeta() != null;
+            costDisplayName = costItem.getItemMeta().getDisplayName();
+        } else costDisplayName = StringUtils.getPrettyMaterialName(costItem.getType());
+
+        final ItemStack itemStack = ItemUtils.createSkull(
+                "ac5c7e53695d88f4d31f52f43fac609ad9e62bc97d49fc504174dfdb84150c39",
+                "&a&lUPGRADE ITEM",
+                "&f",
+                "&3Buy Price",
+                "&7x&b%s&r &f%s".formatted(this.levelUpData.getUpgradeMaterialAmount(), costDisplayName),
+                "&7x&b%s &eExperience Levels".formatted(this.levelUpData.getExperienceLevelCost()),
+                "&f",
+                "&eClick&7 to purchase!",
+                "&f",
+                "&cWARNING! Upgrading &c&l&nWILL&c&l remove applied gem stones!"
+        );
+        return new InventoryButton(itemStack) {
+            @Override
+            public void onClick(InventoryClickEvent clickEvent) {
+                final Player player = (Player) clickEvent.getWhoClicked();
+                if (levelUpData.canAfford(player)) {
+                    levelUpData.removeCosts(player);
+                    player.getInventory().addItem(levelUpData.getUpgradeItem());
+                } else {
+                    player.playSound(player, Sound.ENTITY_VILLAGER_NO, 1.0F, 1.0F);
+                    player.sendMessage(convert("&cYou cannot afford this!"));
+                }
+
+                player.closeInventory();
+            }
+        };
+    }
+
 }

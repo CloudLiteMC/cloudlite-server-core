@@ -24,7 +24,7 @@ public abstract class CloudLiteCore extends JavaPlugin implements Listener {
     @Getter
     private ConfigManager configManager;
     @Getter
-    private ModuleLoader moduleLoader = new ModuleLoader();
+    private ModuleLoader moduleLoader;
     @Getter
     private Random random;
     @Getter
@@ -39,6 +39,7 @@ public abstract class CloudLiteCore extends JavaPlugin implements Listener {
         random = new Random();
         /* use this time to load things that don't need ant major spigot/world implementations */
         /* Looking at your worldguard */
+        this.moduleLoader = new ModuleLoader(this);
         Bukkit.getLogger().info(convert("&fInitializing &bConfigManager&f..."));
         this.configManager = new ConfigManager(this);
         Bukkit.getLogger().info(convert("&aDone!"));

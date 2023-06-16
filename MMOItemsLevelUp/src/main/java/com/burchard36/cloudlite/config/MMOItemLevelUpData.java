@@ -1,5 +1,8 @@
 package com.burchard36.cloudlite.config;
 
+import com.burchard36.cloudlite.AutoCompressorModule;
+import com.burchard36.cloudlite.CloudLiteCore;
+import com.burchard36.cloudlite.utils.ItemUtils;
 import lombok.Getter;
 import net.Indyuce.mmoitems.MMOItems;
 import org.bukkit.configuration.ConfigurationSection;
@@ -8,9 +11,6 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MMOItemLevelUpData {
     @Getter
     protected final String nextMMOItem;
@@ -18,42 +18,45 @@ public class MMOItemLevelUpData {
     protected final String mmoItemType;
     @Getter
     protected final int experienceLevelCost;
+
+    protected final String upgradeMaterialName;
     @Getter
-    protected final List<ItemStack> upgradeItemCosts;
+    protected final int upgradeMaterialAmount;
+    protected ItemStack cachedCostItem;
 
     public MMOItemLevelUpData(final ConfigurationSection config) {
-        this.upgradeItemCosts = new ArrayList<>();
         this.nextMMOItem = config.getString("Next");
         this.mmoItemType = config.getString("Type");
-        if (config.isInt("Cost.Experience")) {
-            this.experienceLevelCost = config.getInt("Cost.Experience");
-        } else experienceLevelCost = -1;
+        this.experienceLevelCost = config.getInt("Cost.Levels");
+        this.upgradeMaterialName = config.getString("Cost.Item.Material");
+        this.upgradeMaterialAmount = config.getInt("Cost.Item.Amount");
+    }
 
-        final ConfigurationSection itemCostSection = config.getConfigurationSection("Cost.Items");
+    public ItemStack getUpgradeItem() {
+        return MMOItems.plugin.getItem(this.mmoItemType, this.nextMMOItem);
+    }
 
-        assert itemCostSection != null;
-        for (String key : itemCostSection.getKeys(false)) {
-            final ConfigurationSection item = itemCostSection.getConfigurationSection(key);
-            assert item != null;
-            this.upgradeItemCosts.add(new ConfigItem(item).getItem());
-        }
+    public ItemStack getCostItem() {
+        if (this.cachedCostItem != null) return this.cachedCostItem;
+        final AutoCompressorModule compressorModule = (AutoCompressorModule) CloudLiteCore.INSTANCE.getModuleLoader().getModule(AutoCompressorModule.class);
+
+        final ItemStack compressedItem = compressorModule.getAutoCompressorConfig().fromString(this.upgradeMaterialName);
+        if (compressedItem != null) {
+            compressedItem.setAmount(this.upgradeMaterialAmount);
+            this.cachedCostItem = compressedItem;
+        } else this.cachedCostItem = ItemUtils.createItemStack(this.upgradeMaterialName, this.upgradeMaterialAmount, null, null);
+        return this.cachedCostItem;
     }
 
     public boolean canAfford(final Player player) {
         if (player.getLevel() < this.experienceLevelCost) return false;
         final Inventory inventory = player.getInventory();
-        for (final ItemStack item : this.upgradeItemCosts) {
-            if (!inventory.containsAtLeast(item, item.getAmount())) return false;
-        }
-        return true;
+        return inventory.containsAtLeast(this.getCostItem(), this.upgradeMaterialAmount);
     }
 
     public void removeCosts(final Player player) {
         final Inventory inventory = player.getInventory();
-        for (final ItemStack item : this.upgradeItemCosts) {
-            inventory.removeItem(item);
-        }
-
+        inventory.removeItem(this.getCostItem());
         player.setLevel(player.getLevel() - this.experienceLevelCost);
     }
 
