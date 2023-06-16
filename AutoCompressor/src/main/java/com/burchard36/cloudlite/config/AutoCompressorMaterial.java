@@ -9,6 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 
 import static java.util.Objects.requireNonNull;
@@ -35,9 +36,9 @@ public class AutoCompressorMaterial {
 
     public AutoCompressorMaterial(final ConfigurationSection config, final Material material) {
         this.thisMaterial = material;
-        this.compressedItem = this.getItemStack(requireNonNull(config.getConfigurationSection("Compressor")));
-        this.superCompressedItem = this.getItemStack(requireNonNull(config.getConfigurationSection("SuperCompressor")));
-        this.megaCompressedItem = this.getItemStack(requireNonNull(config.getConfigurationSection("MegaCompressor")));
+        this.compressedItem = this.getItemStack(requireNonNull(config.getConfigurationSection("Compressor")), this.getCompressedKey());
+        this.superCompressedItem = this.getItemStack(requireNonNull(config.getConfigurationSection("SuperCompressor")), this.getSuperCompressedKey());
+        this.megaCompressedItem = this.getItemStack(requireNonNull(config.getConfigurationSection("MegaCompressor")), this.getMegaCompressedKey());
 
         this.autoCompressorCosts = new AutoCompressorCosts(requireNonNull(config.getConfigurationSection("Compressor.BuyPrice")));
         this.autoSuperCompressorCosts = new AutoCompressorCosts(requireNonNull(config.getConfigurationSection("SuperCompressor.BuyPrice")));
@@ -46,10 +47,15 @@ public class AutoCompressorMaterial {
         this.guiName = config.getString("Gui.Name");
     }
 
-    private ItemStack getItemStack(final ConfigurationSection config) {
+    private ItemStack getItemStack(final ConfigurationSection config, final NamespacedKey compressedKey) {
         final String skullTexture = config.getString("HeadTexture");
         final String displayName = config.getString("DisplayName");
-        return ItemUtils.createSkull(skullTexture, displayName, null);
+        final ItemStack itemStack = ItemUtils.createSkull(skullTexture, displayName, null);
+        assert itemStack.getItemMeta() != null;
+        final ItemMeta meta = itemStack.getItemMeta();
+        meta.getPersistentDataContainer().set(compressedKey, PersistentDataType.BYTE, (byte) 0x00);
+        itemStack.setItemMeta(meta);
+        return itemStack;
     }
 
     public ItemStack getCompressedItem() {
