@@ -9,6 +9,7 @@ import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -19,12 +20,19 @@ public class UpgradeItemGui extends InventoryGui {
 
     protected final ItemStack itemInHand;
     protected final MMOItemLevelUpData levelUpData;
+    protected boolean didBuyItem = false;
 
     public UpgradeItemGui(final ItemStack itemInHand, final MMOItemLevelUpData levelUpData) {
         this.itemInHand = itemInHand;
         this.levelUpData = levelUpData;
     }
 
+    @Override
+    public void onInventoryClose(InventoryCloseEvent event) {
+        if (this.didBuyItem) return;
+        event.getPlayer().getInventory().addItem(this.itemInHand);
+        super.onInventoryClose(event);
+    }
 
     @Override
     public Inventory createInventory() {
@@ -63,7 +71,7 @@ public class UpgradeItemGui extends InventoryGui {
         this.addButton(19, backGround);
         this.addButton(20, backGround);
         this.addButton(21, backGround);
-        this.addButton(22, this.createUpgradeToButton());
+        this.addButton(22, this.getBuyButton());
         this.addButton(23, backGround);
         this.addButton(24, backGround);
         this.addButton(25, backGround);
@@ -148,6 +156,7 @@ public class UpgradeItemGui extends InventoryGui {
                     player.sendMessage(convert("&cYou cannot afford this!"));
                 }
 
+                didBuyItem = true;
                 player.closeInventory();
             }
         };
