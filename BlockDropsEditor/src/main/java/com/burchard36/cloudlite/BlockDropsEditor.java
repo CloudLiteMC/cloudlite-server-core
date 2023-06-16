@@ -4,7 +4,6 @@ import com.burchard36.cloudlite.config.BlockDropsConfig;
 import com.burchard36.cloudlite.events.BlockDropEvent;
 import com.burchard36.cloudlite.module.PluginModule;
 import lombok.Getter;
-import me.arcaniax.hdb.api.HeadDatabaseAPI;
 
 
 public final class BlockDropsEditor implements PluginModule {

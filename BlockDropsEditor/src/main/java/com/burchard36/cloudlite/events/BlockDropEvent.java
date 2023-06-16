@@ -5,7 +5,9 @@ import com.archyx.aureliumskills.api.event.LootDropCause;
 import com.archyx.aureliumskills.api.event.PlayerLootDropEvent;
 import com.archyx.aureliumskills.data.PlayerData;
 import com.burchard36.cloudlite.AureliumMultiplierData;
+import com.burchard36.cloudlite.AutoCompressorModule;
 import com.burchard36.cloudlite.BlockDropsEditor;
+import com.burchard36.cloudlite.CloudLiteCore;
 import com.burchard36.cloudlite.config.BlockDropData;
 import com.burchard36.cloudlite.config.BlockDropsConfig;
 import org.bukkit.Location;
@@ -60,6 +62,8 @@ public class BlockDropEvent implements Listener {
         final ItemStack droppedItem = new ItemStack(brokenData.getDropMaterial(), amount);
         this.handleAurelium(player, droppedItem);
         player.getInventory().addItem(droppedItem);
+        ((AutoCompressorModule) CloudLiteCore.INSTANCE.getModuleLoader().getModule(AutoCompressorModule.class)).getAutoCompressor()
+                .compressPlayer(player, false);
     }
 
     protected void handleAurelium(final Player player, final ItemStack pickupDrop) {
