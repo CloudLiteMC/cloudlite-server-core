@@ -4,8 +4,9 @@ main: com.burchard36.cloudlite.ServerPlugin
 api-version: 1.19
 softdepend:
   - MMOItems
+  - AureliumSkills
 depend:
-  - HeadDatabase
+  - WorldGuard
 commands:
   skipsong:
     aliases:
