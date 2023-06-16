@@ -149,6 +149,7 @@ public class UpgradeItemGui extends InventoryGui {
             public void onClick(InventoryClickEvent clickEvent) {
                 final Player player = (Player) clickEvent.getWhoClicked();
                 if (levelUpData.canAfford(player)) {
+                    didBuyItem = true;
                     levelUpData.removeCosts(player);
                     player.getInventory().addItem(levelUpData.getUpgradeItem());
                 } else {
@@ -156,7 +157,7 @@ public class UpgradeItemGui extends InventoryGui {
                     player.sendMessage(convert("&cYou cannot afford this!"));
                 }
 
-                didBuyItem = true;
+
                 player.closeInventory();
             }
         };
