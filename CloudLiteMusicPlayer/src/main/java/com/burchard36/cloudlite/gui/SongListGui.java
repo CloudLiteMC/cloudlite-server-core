@@ -5,7 +5,6 @@ import com.burchard36.cloudlite.MusicPlayer;
 import com.burchard36.cloudlite.config.SongData;
 import com.burchard36.cloudlite.gui.buttons.InventoryButton;
 import com.burchard36.cloudlite.utils.ItemUtils;
-import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -18,7 +17,6 @@ import static com.burchard36.cloudlite.utils.StringUtils.convert;
 
 public class SongListGui extends PaginatedInventory {
     protected final CloudLiteMusicPlayer moduleInstance;
-    protected final HeadDatabaseAPI headDatabaseAPI;
     protected final GuiManager guiManager;
     protected final MusicPlayer musicPlayer;
 
@@ -26,7 +24,6 @@ public class SongListGui extends PaginatedInventory {
         this.moduleInstance = moduleInstance;
         this.musicPlayer = this.moduleInstance.getMusicPlayer();
         this.guiManager = moduleInstance.getPluginInstance().getGuiManager();
-        this.headDatabaseAPI = this.moduleInstance.getHeadDatabaseAPI();
         int totalPages = musicPlayer.getMusicConfig().getSongDataList().size() / 45;
         if (totalPages == 0) totalPages = 1;
 
@@ -125,13 +122,13 @@ public class SongListGui extends PaginatedInventory {
     }
 
     private ItemStack getNextButton() {
-        return ItemUtils.modify(headDatabaseAPI.getItemHead("60723"), "&a&lNEXT PAGE");
+        return ItemUtils.createSkull("ff9e19e5f2ce3488c29582b6d2601500626e8db2a88cd18164432fef2e34de6b", "&a&lNEXT PAGE", null);
     }
     private ItemStack getPreviousButton() {
-        return ItemUtils.modify(headDatabaseAPI.getItemHead("60721"), "&a&lPREVIOUS PAGE");
+        return ItemUtils.createSkull("f006ec1eca2f2685f70e65411cfe8808a088f7cf08087ad8eece9618361070e3", "&a&lPREVIOUS PAGE", null);
     }
 
     private ItemStack getNextSongButton() {
-        return ItemUtils.modify(headDatabaseAPI.getItemHead("32818"), "&b&lPLAY NEXT SONG");
+        return ItemUtils.createSkull("f0a606361ca311961de49a7d0b977108ff33d717ba13dfa8b70ec09cd7512c86", "&b&lPLAY NEXT SONG", null);
     }
 }

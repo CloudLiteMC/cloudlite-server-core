@@ -7,6 +7,7 @@ public final class ServerPlugin extends CloudLiteCore {
         this.getModuleLoader().registerModule(new CloudLiteMusicPlayer());
         this.getModuleLoader().registerModule(new AutoCompressorModule());
         this.getModuleLoader().registerModule(new MMOItemsLevelUp());
+        this.getModuleLoader().registerModule(new BlockDropsEditor());
         super.onLoad();
     }
 }

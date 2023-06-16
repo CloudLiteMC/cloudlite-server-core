@@ -1,19 +1,28 @@
 package com.burchard36.cloudlite;
 
+import com.burchard36.cloudlite.config.BlockDropsConfig;
+import com.burchard36.cloudlite.events.BlockDropEvent;
 import com.burchard36.cloudlite.module.PluginModule;
+import lombok.Getter;
 import me.arcaniax.hdb.api.HeadDatabaseAPI;
 
 
 public final class BlockDropsEditor implements PluginModule {
 
+    @Getter
+    private CloudLiteCore pluginInstance;
+    @Getter
+    private BlockDropsConfig blockDropsConfig;
+
     @Override
     public void loadModule(CloudLiteCore coreInstance) {
-
+        this.pluginInstance = coreInstance;
+        this.blockDropsConfig = this.pluginInstance.getConfigManager().getConfig(new BlockDropsConfig());
     }
 
     @Override
     public void enableModule() {
-
+        CloudLiteCore.registerEvent(new BlockDropEvent(this));
     }
 
     @Override
@@ -23,11 +32,7 @@ public final class BlockDropsEditor implements PluginModule {
 
     @Override
     public void reload() {
-
-    }
-
-    @Override
-    public void onDatabaseLoad(HeadDatabaseAPI headDatabaseAPI) {
+        this.blockDropsConfig = this.pluginInstance.getConfigManager().getConfig(new BlockDropsConfig());
 
     }
 }

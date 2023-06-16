@@ -8,7 +8,6 @@ import com.burchard36.cloudlite.events.SongEndedEvent;
 import com.burchard36.cloudlite.events.TexturePackLoadEvent;
 import com.burchard36.cloudlite.module.PluginModule;
 import lombok.Getter;
-import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import org.bukkit.Bukkit;
 
 import static com.burchard36.cloudlite.utils.StringUtils.convert;
@@ -20,8 +19,6 @@ public final class CloudLiteMusicPlayer implements PluginModule {
     private MusicListConfig musicListConfig;
     @Getter
     private MusicPlayer musicPlayer;
-    @Getter
-    private HeadDatabaseAPI headDatabaseAPI;
 
     @Override
     public void loadModule(final CloudLiteCore coreInstance) {
@@ -48,16 +45,11 @@ public final class CloudLiteMusicPlayer implements PluginModule {
     }
 
     @Override
-    public void onDatabaseLoad(final HeadDatabaseAPI headDatabaseAPI) {
-        this.headDatabaseAPI = headDatabaseAPI;
-        Bukkit.getLogger().info(convert("&bCloudLiteMusicPlayer&f injected&b HeadDatabaseAPI"));
-    }
-
-    @Override
     public void reload() {
         Bukkit.getLogger().info(convert("&fReloading &bCloudLiteMusicPlayer"));
         this.musicListConfig = this.pluginInstance.getConfigManager().getConfig(new MusicListConfig());
 
         this.musicPlayer.setMusicConfig(this.musicListConfig);
+        Bukkit.getLogger().info(convert("&bCloudLiteMusicPlayer&f reloaded!"));
     }
 }

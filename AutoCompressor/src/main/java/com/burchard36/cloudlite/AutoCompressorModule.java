@@ -5,7 +5,6 @@ import com.burchard36.cloudlite.config.AutoCompressorConfig;
 import com.burchard36.cloudlite.events.BreakBlockEvent;
 import com.burchard36.cloudlite.module.PluginModule;
 import lombok.Getter;
-import me.arcaniax.hdb.api.HeadDatabaseAPI;
 
 public final class AutoCompressorModule implements PluginModule {
     @Getter
@@ -29,11 +28,6 @@ public final class AutoCompressorModule implements PluginModule {
 
     @Override
     public void disableModule() {
-
-    }
-
-    @Override
-    public void onDatabaseLoad(HeadDatabaseAPI headDatabaseAPI) {
 
     }
 

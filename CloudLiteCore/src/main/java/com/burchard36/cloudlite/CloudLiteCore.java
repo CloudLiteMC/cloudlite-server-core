@@ -5,12 +5,9 @@ import com.burchard36.cloudlite.gui.GuiEvents;
 import com.burchard36.cloudlite.gui.GuiManager;
 import com.burchard36.cloudlite.module.ModuleLoader;
 import lombok.Getter;
-import me.arcaniax.hdb.api.DatabaseLoadEvent;
-import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandExecutor;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -64,13 +61,6 @@ public abstract class CloudLiteCore extends JavaPlugin implements Listener {
         Bukkit.getLogger().info(convert("&fIf there was any &cerrors&f please review your configs before contacting a &bdeveloper&f."));
     }
 
-    @EventHandler
-    public void onDatabaseLoad(final DatabaseLoadEvent loadEvent) {
-        Bukkit.getLogger().info(convert("&bHeadDatabaseAPI &fHas connected to its database, injecting API to all modules..."));
-        this.moduleLoader.onDatabaseLoad(new HeadDatabaseAPI());
-        Bukkit.getLogger().info(convert("&aDone!"));
-    }
-
     @Override
     public void onDisable() {
         this.moduleLoader.onServerShutdown();
@@ -84,9 +74,5 @@ public abstract class CloudLiteCore extends JavaPlugin implements Listener {
     public static void registerCommand(final String commandName, final CommandExecutor executor) {
         Bukkit.getLogger().info(convert("&fAttempting to register command&b%s".formatted(commandName)));
         INSTANCE.getCommand(commandName).setExecutor(executor);
-    }
-
-    public void loadInventoryModule() {
-        registerEvent(this); // finish initialization after heads database initializes
     }
 }

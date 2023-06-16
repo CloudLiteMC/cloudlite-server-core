@@ -1,0 +1,70 @@
+ROOTED_DIRT:
+  Amount: 4
+  Experience: 1
+  DropMaterial: DIRT
+  FortuneToolType: SHOVEL
+COARSE_DIRT:
+  Amount: 2
+  Experience: 1
+  DropMaterial: DIRT
+  FortuneToolType: SHOVEL
+DIRT:
+  Amount: 1
+  Experience: 1
+  DropMaterial: DIRT
+  FortuneToolType: SHOVEL
+OAK_WOOD:
+  Amount: 1
+  Experience: 1
+  DropMaterial: OAK_LOG
+  FortuneToolType: AXE
+STRIPPED_OAK_WOOD:
+  Amount: 2
+  Experience: 1
+  DropMaterial: OAK_LOG
+  FortuneToolType: AXE
+WHEAT:
+  Amount: 1
+  Experience: 1
+  DropMaterial: WHEAT
+  FortuneToolType: HOE
+STONE:
+  Amount: 1
+  Experience: 1
+  DropMaterial: COBBLESTONE
+  FortuneToolType: PICKAXE
+COBBLESTONE:
+  Amount: 2
+  Experience: 1
+  DropMaterial: COBBLESTONE
+  FortuneToolType: PICKAXE
+SMOOTH_STONE:
+  Amount: 4
+  Experience: 2
+  DropMaterial: COBBLESTONE
+  FortuneToolType: PICKAXE
+COAL_ORE:
+  Amount: 1
+  Experience: 2
+  DropMaterial: COAL
+  FortuneToolType: PICKAXE
+COAL_BLOCK:
+  Amount: 9
+  Experience: 18
+  DropMaterial: COAL
+  FortuneToolType: PICKAXE
+IRON_ORE:
+  Amount: 1
+  Experience: 3
+  DropMaterial: IRON_INGOT
+  FortuneToolType: PICKAXE
+RAW_IRON_BLOCK:
+  Amount: 4
+  Experience: 12
+  DropMaterial: IRON_INGOT
+  FortuneToolType: PICKAXE
+IRON_BLOCK:
+  Amount: 9
+  Experience: 27
+  DropMaterial: IRON_INGOT
+  FortuneToolType: PICKAXE
