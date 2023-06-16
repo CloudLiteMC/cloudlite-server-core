@@ -22,11 +22,8 @@ public class MMOItemLevelUpConfig implements Config {
     @Override
     public void deserialize(FileConfiguration configuration) {
         this.mmoItemLevelUps.clear();
-        final ConfigurationSection config = configuration.getConfigurationSection("MMOItemUpgrades");
-
-        assert config != null;
-        for (String startingMMOItem : config.getKeys(false)) {
-            final ConfigurationSection section = config.getConfigurationSection(startingMMOItem);
+        for (String startingMMOItem : configuration.getKeys(false)) {
+            final ConfigurationSection section = configuration.getConfigurationSection(startingMMOItem);
             assert section != null;
             this.mmoItemLevelUps.put(startingMMOItem, new MMOItemLevelUpData(section));
         }

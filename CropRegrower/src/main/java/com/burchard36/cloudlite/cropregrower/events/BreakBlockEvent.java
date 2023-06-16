@@ -33,7 +33,10 @@ public class BreakBlockEvent implements Listener {
                 if (regenAt > now) return;
                 Ageable ageable = (Ageable) block.getBlockData();
                 ageable.setAge(ageable.getMaximumAge());
-                block.setBlockData(ageable);
+                TaskRunner.runSyncTaskLater(() -> {
+                    block.setBlockData(ageable);
+                    blockRegenTimes.remove(block);
+                }, 1);
             });
         }, 4);
     }
