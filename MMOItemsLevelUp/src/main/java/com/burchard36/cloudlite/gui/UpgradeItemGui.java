@@ -144,13 +144,13 @@ public class UpgradeItemGui extends InventoryGui {
         itemLore.add("&7x&b%s &eExperience Levels".formatted(this.levelUpData.getExperienceLevelCost()));
         itemLore.add("&f");
         itemLore.add("&eClick&7 to purchase!");
-        itemLore.add("&ef ");
+        itemLore.add("&e ");
         itemLore.add("&cWARNING! Upgrading &c&l&nWILL&c&l remove applied gem stones!");
 
         final ItemStack itemStack = ItemUtils.createSkull(
                 "ac5c7e53695d88f4d31f52f43fac609ad9e62bc97d49fc504174dfdb84150c39",
                 "&a&lUPGRADE ITEM",
-                itemLore);
+                itemLore.toArray(new String[0]));
         return new InventoryButton(itemStack) {
             @Override
             public void onClick(InventoryClickEvent clickEvent) {

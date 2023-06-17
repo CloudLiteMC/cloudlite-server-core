@@ -23,14 +23,17 @@ public class MMOItemLevelUpConfig {
     public MMOItemLevelUpConfig(final MMOItemsLevelUp moduleInstance) {
         this.moduleInstance = moduleInstance;
 
-        final List<MMOItemRecursiveConfig> recursiveConfigs = this.moduleInstance.getPluginInstance().getConfigManager().getRecursiveConfig(
+        /* Ensure the config files always exist from the jar */
+        this.moduleInstance.getPluginInstance().saveResource("levelup-items/axes/beginner_axe_upgrades.yml", false);
+        this.moduleInstance.getPluginInstance().saveResource("levelup-items/pickaxes/beginner_pickaxe_upgrades.yml", false);
+        this.moduleInstance.getPluginInstance().saveResource("levelup-items/shovels/beginner_shovel_upgrades.yml", false);
+        this.moduleInstance.getPluginInstance().saveResource("levelup-items/swords/beginner_sword_upgrades.yml", false);
+
+        List<MMOItemRecursiveConfig> recursiveConfigs = this.moduleInstance.getPluginInstance().getConfigManager().getRecursiveConfig(
                 "levelup-items",
-                new MMOItemRecursiveConfig(),
+                MMOItemRecursiveConfig.class,
                 null
         );
-
-        if (recursiveConfigs.isEmpty())
-            Bukkit.getLogger().info(convert("Seems the recursive configuration for MMOItemsLevelUpConfig has failed! (Or you dont have any configs in the directory"));
 
         Bukkit.getLogger().info(convert("Loading %s configuration files for MMOItemsLevelUpConfig".formatted(recursiveConfigs.size())));
         recursiveConfigs.forEach(recursiveConfig -> {

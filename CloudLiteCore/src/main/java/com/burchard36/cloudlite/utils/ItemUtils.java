@@ -22,9 +22,6 @@ public class ItemUtils {
 
     private static final String TEXTURE_URL = "http://textures.minecraft.net/texture/";
 
-    public static ItemStack createSkull(final String texture, final @Nullable String displayName, final List<String> lore) {
-        return createSkull(texture, displayName, lore);
-    }
     public static ItemStack createSkull(final String texture, final @Nullable String displayName, final @Nullable String... lore) {
         final ItemStack itemStack = createItemStack(Material.PLAYER_HEAD, displayName, lore);
         final SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
