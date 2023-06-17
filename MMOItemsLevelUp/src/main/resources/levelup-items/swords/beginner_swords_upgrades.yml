@@ -1,0 +1,46 @@
+
+BEGINNER_SWORD_1:
+  Next: BEGINNER_SWORD_2
+  Type: SWORD
+  Cost:
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 16
+    Levels: 1
+BEGINNER_SWORD_2:
+  Next: BEGINNER_SWORD_3
+  Type: SWORD
+  Cost:
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 32
+    Levels: 2
+BEGINNER_SWORD_3:
+  Next: BEGINNER_SWORD_4
+  Type: SWORD
+  Cost:
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 64
+    Levels: 4
+BEGINNER_SWORD_4:
+  Next: BEGINNER_SWORD_5
+  Type: SWORD
+  Cost:
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 2
+    Levels: 6
+BEGINNER_SWORD_5:
+  Next: BEGINNER_SWORD_6
+  Type: SWORD
+  Cost:
+    Items:
+      Item:
+        Material: COMPRESSED_DIRT
+        Amount: 3
+    Levels: 10

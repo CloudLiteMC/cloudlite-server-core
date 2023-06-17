@@ -1,0 +1,45 @@
+BEGINNER_PICKAXE_1:
+  Next: BEGINNER_PICKAXE_2
+  Type: TOOL
+  Cost:
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 16
+    Levels: 1
+BEGINNER_PICKAXE_2:
+  Next: BEGINNER_PICKAXE_3
+  Type: TOOL
+  Cost:
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 32
+    Levels: 2
+BEGINNER_PICKAXE_3:
+  Next: BEGINNER_PICKAXE_4
+  Type: TOOL
+  Cost:
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 64
+    Levels: 4
+BEGINNER_PICKAXE_4:
+  Next: BEGINNER_PICKAXE_5
+  Type: TOOL
+  Cost:
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 2
+    Levels: 6
+BEGINNER_PICKAXE_5:
+  Next: BEGINNER_PICKAXE_6
+  Type: TOOL
+  Cost:
+    Items:
+      Item:
+        Material: COMPRESSED_DIRT
+        Amount: 3
+    Levels: 10

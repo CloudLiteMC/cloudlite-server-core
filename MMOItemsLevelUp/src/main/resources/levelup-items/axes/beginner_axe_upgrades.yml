@@ -1,0 +1,45 @@
+BEGINNER_AXE_1:
+  Next: BEGINNER_AXE_2
+  Type: TOOL
+  Cost:
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 16
+    Levels: 1
+BEGINNER_AXE_2:
+  Next: BEGINNER_AXE_3
+  Type: TOOL
+  Cost:
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 32
+    Levels: 2
+BEGINNER_AXE_3:
+  Next: BEGINNER_AXE_4
+  Type: TOOL
+  Cost:
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 64
+    Levels: 4
+BEGINNER_AXE_4:
+  Next: BEGINNER_AXE_5
+  Type: TOOL
+  Cost:
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 2
+    Levels: 6
+BEGINNER_AXE_5:
+  Next: BEGINNER_AXE_6
+  Type: TOOL
+  Cost:
+    Items:
+      Item:
+        Material: COMPRESSED_DIRT
+        Amount: 3
+    Levels: 10
