@@ -14,6 +14,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.burchard36.cloudlite.utils.StringUtils.convert;
 
 public class UpgradeItemGui extends InventoryGui {
@@ -82,7 +85,7 @@ public class UpgradeItemGui extends InventoryGui {
 
     protected ItemStack upgradeToItem() {
         String texture = "ff9e19e5f2ce3488c29582b6d2601500626e8db2a88cd18164432fef2e34de6b";
-        return ItemUtils.createSkull(texture, "&a&lUPGRADES TO", null);
+        return ItemUtils.createSkull(texture, "&a&lUPGRADES TO", (String) null);
     }
     protected final InventoryButton createUpgradeToButton() {
         return new InventoryButton(this.upgradeToItem()) {
@@ -125,25 +128,29 @@ public class UpgradeItemGui extends InventoryGui {
     }
 
     protected final InventoryButton getBuyButton() {
-        String costDisplayName;
-        final ItemStack costItem = this.levelUpData.getCostItem();
-        if (costItem.hasItemMeta()) {
-            assert costItem.getItemMeta() != null;
-            costDisplayName = costItem.getItemMeta().getDisplayName();
-        } else costDisplayName = StringUtils.getPrettyMaterialName(costItem.getType());
+        List<String> itemLore = new ArrayList<>();
+        itemLore.add("&f ");
+        itemLore.add("&3Buy Price");
+        final List<ItemStack> costItems = this.levelUpData.getCostItems();
+        costItems.forEach(costItem -> {
+            String costDisplayName;
+            if (costItem.hasItemMeta()) {
+                assert costItem.getItemMeta() != null;
+                costDisplayName = costItem.getItemMeta().getDisplayName();
+            } else costDisplayName = StringUtils.getPrettyMaterialName(costItem.getType());
+
+            itemLore.add("&7x&b%s&r &f%s".formatted(costItem.getAmount(), costDisplayName));
+        });
+        itemLore.add("&7x&b%s &eExperience Levels".formatted(this.levelUpData.getExperienceLevelCost()));
+        itemLore.add("&f");
+        itemLore.add("&eClick&7 to purchase!");
+        itemLore.add("&ef ");
+        itemLore.add("&cWARNING! Upgrading &c&l&nWILL&c&l remove applied gem stones!");
 
         final ItemStack itemStack = ItemUtils.createSkull(
                 "ac5c7e53695d88f4d31f52f43fac609ad9e62bc97d49fc504174dfdb84150c39",
                 "&a&lUPGRADE ITEM",
-                "&f",
-                "&3Buy Price",
-                "&7x&b%s&r &f%s".formatted(this.levelUpData.getUpgradeMaterialAmount(), costDisplayName),
-                "&7x&b%s &eExperience Levels".formatted(this.levelUpData.getExperienceLevelCost()),
-                "&f",
-                "&eClick&7 to purchase!",
-                "&f",
-                "&cWARNING! Upgrading &c&l&nWILL&c&l remove applied gem stones!"
-        );
+                itemLore);
         return new InventoryButton(itemStack) {
             @Override
             public void onClick(InventoryClickEvent clickEvent) {

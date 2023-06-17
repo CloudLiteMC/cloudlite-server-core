@@ -98,7 +98,7 @@ public class CompressorGui extends PaginatedInventory {
                     this.addButton(51, backgroundItem());
                     this.addButton(52, backgroundItem());
 
-                    this.addButton(53, new InventoryButton(ItemUtils.createSkull("ff9e19e5f2ce3488c29582b6d2601500626e8db2a88cd18164432fef2e34de6b", "&3&lNEXT PAGE >>", null)) {
+                    this.addButton(53, new InventoryButton(ItemUtils.createSkull("ff9e19e5f2ce3488c29582b6d2601500626e8db2a88cd18164432fef2e34de6b", "&3&lNEXT PAGE >>", (String) null)) {
                         @Override
                         public void onClick(InventoryClickEvent clickEvent) {
                             final Player player = (Player) clickEvent.getWhoClicked();
@@ -115,7 +115,7 @@ public class CompressorGui extends PaginatedInventory {
                         }
                     });
 
-                    this.addButton(45, new InventoryButton(ItemUtils.createSkull("f006ec1eca2f2685f70e65411cfe8808a088f7cf08087ad8eece9618361070e3", "&3&l<< PREVIOUS PAGE", null)) {
+                    this.addButton(45, new InventoryButton(ItemUtils.createSkull("f006ec1eca2f2685f70e65411cfe8808a088f7cf08087ad8eece9618361070e3", "&3&l<< PREVIOUS PAGE", (String) null)) {
 
                         @Override
                         public void onClick(InventoryClickEvent clickEvent) {

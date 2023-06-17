@@ -11,6 +11,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
+import java.util.*;
+
 public class MMOItemLevelUpData {
     @Getter
     protected final String nextMMOItem;
@@ -19,44 +21,70 @@ public class MMOItemLevelUpData {
     @Getter
     protected final int experienceLevelCost;
 
-    protected final String upgradeMaterialName;
-    @Getter
-    protected final int upgradeMaterialAmount;
-    protected ItemStack cachedCostItem;
+    protected final List<Map.Entry<String, Integer>> upgradeMaterialAndAmountSets;
+    protected List<ItemStack> cachedCostItems;
 
     public MMOItemLevelUpData(final ConfigurationSection config) {
+        this.upgradeMaterialAndAmountSets = new ArrayList<>();
+        this.cachedCostItems = new ArrayList<>();
         this.nextMMOItem = config.getString("Next");
         this.mmoItemType = config.getString("Type");
         this.experienceLevelCost = config.getInt("Cost.Levels");
-        this.upgradeMaterialName = config.getString("Cost.Item.Material");
-        this.upgradeMaterialAmount = config.getInt("Cost.Item.Amount");
+
+        ConfigurationSection itemsSection = config.getConfigurationSection("Cost.Items");
+
+        assert itemsSection != null;
+        for (String key : itemsSection.getKeys(false)) {
+            final ConfigurationSection itemData = itemsSection.getConfigurationSection(key);
+            upgradeMaterialAndAmountSets.add(new Map.Entry<>() {
+                @Override
+                public String getKey() {
+                    return itemData.getString("Material");
+                }
+                @Override
+                public Integer getValue() {
+                    return itemData.getInt("Amount");
+                }
+                @Override
+                public Integer setValue(Integer value) {
+                    return null;
+                }
+            });
+        }
     }
 
     public ItemStack getUpgradeItem() {
         return MMOItems.plugin.getItem(this.mmoItemType, this.nextMMOItem);
     }
 
-    public ItemStack getCostItem() {
-        if (this.cachedCostItem != null) return this.cachedCostItem;
-        final AutoCompressorModule compressorModule = (AutoCompressorModule) CloudLiteCore.INSTANCE.getModuleLoader().getModule(AutoCompressorModule.class);
+    public List<ItemStack> getCostItems() {
+        if (!this.cachedCostItems.isEmpty()) return this.cachedCostItems;
+        final AutoCompressorModule compressorModule =
+                (AutoCompressorModule) CloudLiteCore.INSTANCE.getModuleLoader().getModule(AutoCompressorModule.class);
 
-        final ItemStack compressedItem = compressorModule.getAutoCompressorConfig().fromString(this.upgradeMaterialName);
-        if (compressedItem != null) {
-            compressedItem.setAmount(this.upgradeMaterialAmount);
-            this.cachedCostItem = compressedItem;
-        } else this.cachedCostItem = ItemUtils.createItemStack(this.upgradeMaterialName, this.upgradeMaterialAmount, null, null);
-        return this.cachedCostItem;
+        for (Map.Entry<String, Integer> itemStackData : this.upgradeMaterialAndAmountSets) {
+            ItemStack itemStack = compressorModule.getAutoCompressorConfig().fromString(itemStackData.getKey());
+            if (itemStack == null) {
+                itemStack = ItemUtils.createItemStack(itemStackData.getKey(), itemStackData.getValue(), null, null);
+            } else itemStack.setAmount(itemStackData.getValue());
+            this.cachedCostItems.add(itemStack);
+        }
+
+        return this.cachedCostItems;
     }
 
     public boolean canAfford(final Player player) {
         if (player.getLevel() < this.experienceLevelCost) return false;
         final Inventory inventory = player.getInventory();
-        return inventory.containsAtLeast(this.getCostItem(), this.upgradeMaterialAmount);
+        for (ItemStack item : this.getCostItems()) {
+            if (!inventory.containsAtLeast(item, item.getAmount())) return false;
+        }
+        return true;
     }
 
     public void removeCosts(final Player player) {
         final Inventory inventory = player.getInventory();
-        inventory.removeItem(this.getCostItem());
+        this.getCostItems().forEach(inventory::removeItem);
         player.setLevel(player.getLevel() - this.experienceLevelCost);
     }
 

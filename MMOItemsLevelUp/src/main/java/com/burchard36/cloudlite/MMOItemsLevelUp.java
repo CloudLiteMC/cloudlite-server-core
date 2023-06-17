@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public final class MMOItemsLevelUp implements PluginModule {
+    @Getter
     private CloudLiteCore pluginInstance;
     @Getter
     private MMOItemLevelUpConfig levelUpConfig;
@@ -15,7 +16,7 @@ public final class MMOItemsLevelUp implements PluginModule {
     @Override
     public void loadModule(CloudLiteCore coreInstance) {
         this.pluginInstance = coreInstance;
-        this.levelUpConfig = this.pluginInstance.getConfigManager().getConfig(new MMOItemLevelUpConfig());
+        this.levelUpConfig = new MMOItemLevelUpConfig(this);
     }
 
     @Override
@@ -30,6 +31,6 @@ public final class MMOItemsLevelUp implements PluginModule {
 
     @Override
     public void reload() {
-        this.levelUpConfig = this.pluginInstance.getConfigManager().getConfig(new MMOItemLevelUpConfig());
+        this.levelUpConfig = new MMOItemLevelUpConfig(this);
     }
 }

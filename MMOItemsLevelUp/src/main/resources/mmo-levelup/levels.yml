@@ -2,79 +2,179 @@ BEGINNER_SHOVEL_1:
   Next: BEGINNER_SHOVEL_2
   Type: TOOL
   Cost:
-    Item:
-      Material: DIRT
-      Amount: 16
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 16
     Levels: 1
 BEGINNER_SHOVEL_2:
   Next: BEGINNER_SHOVEL_3
   Type: TOOL
   Cost:
-    Item:
-      Material: DIRT
-      Amount: 32
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 32
     Levels: 2
 BEGINNER_SHOVEL_3:
   Next: BEGINNER_SHOVEL_4
   Type: TOOL
   Cost:
-    Item:
-      Material: DIRT
-      Amount: 64
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 64
     Levels: 4
 BEGINNER_SHOVEL_4:
   Next: BEGINNER_SHOVEL_5
   Type: TOOL
   Cost:
-    Item:
-      Material: COMPRESSED_DIRT
-      Amount: 1
+    Items:
+      Item:
+        Material: COMPRESSED_DIRT
+        Amount: 2
     Levels: 6
 BEGINNER_SHOVEL_5:
   Next: BEGINNER_SHOVEL_6
   Type: TOOL
   Cost:
-    Item:
-      Material: COMPRESSED_DIRT
-      Amount: 2
+    Items:
+      Item:
+        Material: COMPRESSED_DIRT
+        Amount: 3
     Levels: 10
 BEGINNER_PICKAXE_1:
   Next: BEGINNER_PICKAXE_2
   Type: TOOL
   Cost:
-    Item:
-      Material: DIRT
-      Amount: 8
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 16
     Levels: 1
 BEGINNER_PICKAXE_2:
   Next: BEGINNER_PICKAXE_3
   Type: TOOL
   Cost:
-    Item:
-      Material: DIRT
-      Amount: 12
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 32
     Levels: 2
 BEGINNER_PICKAXE_3:
   Next: BEGINNER_PICKAXE_4
   Type: TOOL
   Cost:
-    Item:
-      Material: DIRT
-      Amount: 24
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 64
     Levels: 4
 BEGINNER_PICKAXE_4:
   Next: BEGINNER_PICKAXE_5
   Type: TOOL
   Cost:
-    Item:
-      Material: DIRT
-      Amount: 32
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 2
     Levels: 6
 BEGINNER_PICKAXE_5:
   Next: BEGINNER_PICKAXE_6
   Type: TOOL
   Cost:
-    Item:
-      Material: DIRT
-      Amount: 64
+    Items:
+      Item:
+        Material: COMPRESSED_DIRT
+        Amount: 3
+    Levels: 10
+BEGINNER_AXE_1:
+  Next: BEGINNER_AXE_2
+  Type: TOOL
+  Cost:
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 16
+    Levels: 1
+BEGINNER_AXE_2:
+  Next: BEGINNER_AXE_3
+  Type: TOOL
+  Cost:
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 32
+    Levels: 2
+BEGINNER_AXE_3:
+  Next: BEGINNER_AXE_4
+  Type: TOOL
+  Cost:
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 64
+    Levels: 4
+BEGINNER_AXE_4:
+  Next: BEGINNER_AXE_5
+  Type: TOOL
+  Cost:
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 2
     Levels: 6
+BEGINNER_AXE_5:
+  Next: BEGINNER_AXE_6
+  Type: TOOL
+  Cost:
+    Items:
+      Item:
+        Material: COMPRESSED_DIRT
+        Amount: 3
+    Levels: 10
+BEGINNER_SWORD_1:
+  Next: BEGINNER_SWORD_2
+  Type: SWORD
+  Cost:
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 16
+    Levels: 1
+BEGINNER_SWORD_2:
+  Next: BEGINNER_SWORD_3
+  Type: SWORD
+  Cost:
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 32
+    Levels: 2
+BEGINNER_SWORD_3:
+  Next: BEGINNER_SWORD_4
+  Type: SWORD
+  Cost:
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 64
+    Levels: 4
+BEGINNER_SWORD_4:
+  Next: BEGINNER_SWORD_5
+  Type: SWORD
+  Cost:
+    Items:
+      Item:
+        Material: DIRT
+        Amount: 2
+    Levels: 6
+BEGINNER_SWORD_5:
+  Next: BEGINNER_SWORD_6
+  Type: SWORD
+  Cost:
+    Items:
+      Item:
+        Material: COMPRESSED_DIRT
+        Amount: 3
+    Levels: 10

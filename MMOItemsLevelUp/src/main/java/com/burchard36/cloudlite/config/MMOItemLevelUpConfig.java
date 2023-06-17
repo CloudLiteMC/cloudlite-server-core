@@ -1,32 +1,42 @@
 package com.burchard36.cloudlite.config;
 
+import com.burchard36.cloudlite.MMOItemsLevelUp;
 import lombok.NonNull;
 import net.Indyuce.mmoitems.MMOItems;
 import net.Indyuce.mmoitems.api.Type;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
+import java.util.List;
 
-public class MMOItemLevelUpConfig implements Config {
+import static com.burchard36.cloudlite.utils.StringUtils.convert;
+
+public class MMOItemLevelUpConfig {
 
     private final HashMap<String, MMOItemLevelUpData> mmoItemLevelUps = new HashMap<>();
+    protected final MMOItemsLevelUp moduleInstance;
 
-    @Override
-    public @NonNull String getFileName() {
-        return "mmo-levelup/levels.yml";
-    }
+    public MMOItemLevelUpConfig(final MMOItemsLevelUp moduleInstance) {
+        this.moduleInstance = moduleInstance;
 
-    @Override
-    public void deserialize(FileConfiguration configuration) {
-        this.mmoItemLevelUps.clear();
-        for (String startingMMOItem : configuration.getKeys(false)) {
-            final ConfigurationSection section = configuration.getConfigurationSection(startingMMOItem);
-            assert section != null;
-            this.mmoItemLevelUps.put(startingMMOItem, new MMOItemLevelUpData(section));
-        }
+        final List<MMOItemRecursiveConfig> recursiveConfigs = this.moduleInstance.getPluginInstance().getConfigManager().getRecursiveConfig(
+                "levelup-items",
+                new MMOItemRecursiveConfig(),
+                null
+        );
+
+        if (recursiveConfigs.isEmpty())
+            Bukkit.getLogger().info(convert("Seems the recursive configuration for MMOItemsLevelUpConfig has failed! (Or you dont have any configs in the directory"));
+
+        Bukkit.getLogger().info(convert("Loading %s configuration files for MMOItemsLevelUpConfig".formatted(recursiveConfigs.size())));
+        recursiveConfigs.forEach(recursiveConfig -> {
+            this.mmoItemLevelUps.putAll(recursiveConfig.getMmoItemLevelUps());
+        });
+        Bukkit.getLogger().info(convert("Successfully laoded %s MMOItem upgrades!".formatted(this.mmoItemLevelUps.size())));
     }
 
     public final @Nullable MMOItemLevelUpData getUpgrade(final ItemStack itemStack) {

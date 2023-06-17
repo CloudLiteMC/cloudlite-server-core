@@ -50,7 +50,7 @@ public class AutoCompressorMaterial {
     private ItemStack getItemStack(final ConfigurationSection config, final NamespacedKey compressedKey) {
         final String skullTexture = config.getString("HeadTexture");
         final String displayName = config.getString("DisplayName");
-        final ItemStack itemStack = ItemUtils.createSkull(skullTexture, displayName, null);
+        final ItemStack itemStack = ItemUtils.createSkull(skullTexture, displayName, (String) null);
         assert itemStack.getItemMeta() != null;
         final ItemMeta meta = itemStack.getItemMeta();
         meta.getPersistentDataContainer().set(compressedKey, PersistentDataType.BYTE, (byte) 0x00);

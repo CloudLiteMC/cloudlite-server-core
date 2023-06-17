@@ -18,6 +18,7 @@ public class StringUtils {
     }
 
     public static @NonNull String convert(final String toConvert) {
+
         return ChatColor.translateAlternateColorCodes('&', toConvert);
     }
 
