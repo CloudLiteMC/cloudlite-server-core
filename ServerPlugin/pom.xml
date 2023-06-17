@@ -36,12 +36,6 @@
     <dependencies>
         <dependency>
             <groupId>com.burchard36.cloudlite</groupId>
-            <artifactId>CloudLiteMusicPlayer</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.burchard36.cloudlite</groupId>
             <artifactId>AutoCompressor</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>

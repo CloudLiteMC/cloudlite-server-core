@@ -18,7 +18,6 @@
 
     <modules>
         <module>CloudLiteCore</module>
-        <module>CloudLiteMusicPlayer</module>
         <module>ServerPlugin</module>
         <module>MMOItemsLevelUp</module>
         <module>AutoCompressor</module>

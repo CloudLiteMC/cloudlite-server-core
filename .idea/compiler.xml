@@ -8,10 +8,11 @@
         <outputRelativeToContentRoot value="true" />
         <module name="CropRegrower" />
         <module name="AutoCompressor" />
+        <module name="MusePluseBase" />
         <module name="BlockDropsEditor" />
-        <module name="CloudLiteMusicPlayer" />
         <module name="CloudLiteCore" />
         <module name="ServerPlugin" />
+        <module name="MusePluseMusicPlayer" />
         <module name="MMOItemsLevelUp" />
       </profile>
     </annotationProcessing>
@@ -19,10 +20,11 @@
       <module name="AutoCompressor" target="17" />
       <module name="BlockDropsEditor" target="17" />
       <module name="CloudLiteCore" target="17" />
-      <module name="CloudliteMCServerCore" target="17" />
-      <module name="CloudLiteMusicPlayer" target="17" />
       <module name="CropRegrower" target="17" />
       <module name="MMOItemsLevelUp" target="17" />
+      <module name="MusePluse" target="17" />
+      <module name="MusePluseBase" target="17" />
+      <module name="MusePluseMusicPlayer" target="17" />
       <module name="RapidCropRegrowth" target="1.8" />
       <module name="ServerPlugin" target="17" />
     </bytecodeTargetLevel>
