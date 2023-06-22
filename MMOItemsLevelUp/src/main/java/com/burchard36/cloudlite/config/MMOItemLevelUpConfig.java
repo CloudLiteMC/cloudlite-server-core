@@ -1,12 +1,9 @@
 package com.burchard36.cloudlite.config;
 
 import com.burchard36.cloudlite.MMOItemsLevelUp;
-import lombok.NonNull;
 import net.Indyuce.mmoitems.MMOItems;
 import net.Indyuce.mmoitems.api.Type;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nullable;
